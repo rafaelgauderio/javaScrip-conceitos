@@ -1,0 +1,55 @@
+-> TIPOS E VARIÁVEIS
+
+	-> Possui 6 tipos primitivos: string, number, boolean, null, undefined, symbol
+			-> undefined: tipo de variável que existe, mas não foi setado um valor para ela ainda.
+			-> symbol: permite criar valores únicos
+
+	-> Object, Function (pode ser chamado), Array (objeto que tem relação com os itens)
+
+	-> String
+			-> const textSize = 'texto'; -- apenas criando a variável
+			-> const textSize = 'texto'.length;
+			-> const splitedText = 'texto'split('x');
+			-> const replacedText = 'texto'.replace('text','novo_text');
+			-> const lastChar = 'texto'.slice(-1);
+			-> const allWithoutLastChar ='texto'.slice(0,-1); -- passa o começo e o fim
+			-> const secondToEnd = 'texto'.slice(1);
+			-> const twoCharsBeforeFirstPos = 'Texto'.substr(0,2); -- passa o começo e a quantidade de caracteres
+
+	-> number
+			-> tudo é number, não diferencia float, int, double
+			-> const myNumber = 15.45;
+			-> const numberAsString = myNummber.toString();
+			-> const fixedTwoDecimals = myNumber.toFixed(2);
+					numeroPi = numeroPi.toFixed(2), para retornar "3,14"
+			-> parsetFloat('14,22'); -- converte string em float;
+			-> parseInt(13.20); -- transforma string em int;
+			-> colese.log(typeof parseInt(14.20)); -- diz qual é o tipo da variável
+
+
+	-> null 
+			-> const nullVariable = null;
+			-> console.log(typeof nullVariable);
+			-> console.log(nullVariable);
+
+	-> undefined;
+			-> let undefinedVariable
+			-> console.log('tipo da variavel:', typeof undefinedVariable);
+
+	-> boolean
+			-> const isActive = true;
+			-> const isAuthenticated = false;
+
+	-> Object
+
+	-> Symbol
+
+
+
+
+
+
+
+
+
+

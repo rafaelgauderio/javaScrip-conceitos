@@ -1,0 +1,41 @@
+-> CURRYING
+	-> Técnica de transformar uma função com n parâmetros em apenas 1 função com 1 parâmetro e
+			para cada parametro vai retornando uma nova função
+	 	function soma(a) {
+	 		return function(b) {
+	 			return a + b
+	 		}
+
+	 	}
+
+	 	const soma2 - soma(2) -- seria como se sempre fosse 2 o parâmetro a e dae posso passar apenas parâmetro b
+
+	 	console.log(soma2(2));
+	 	console.log(soma2(3));
+	 	console.log(soma2(5));
+	 	console.log(soma2(7));
+
+-> HOISTING
+	-> É a capacidade do JavaScript elevar a criação de variáveis e funções ao topo do escopo de suas criações. Existem dois 			tipos de Hoisting: hoisting de variável e hoisting de função.
+
+	-> Levantar ou suspender algo. Ocorre no JS em declaraçãode variável e funções.
+	-> 2 Tipos: de variáveis e de funções
+	-> eleva a variavel ou função ao escopo que ela está, seja ele de bloco, de função ou global. 
+	-> Em outras linguagens tu não consegue usar uma variável que ainda não foi definida.
+			erro undefined: a variável existe, mas ainda não foi definida.
+	-> Mas o ideal em projetos reais é não chamar funções antes de criar ele, por mais que tenha o hoisting
+
+-> IMUTABILIDADE
+	-> Conceito de linguagem funcional: Os dados criados nunca mudam.
+			Não vai mudar um array, vai criar um novo e concatena com o antigo
+	-> Um Objeto nunca é atualizado. Criar um novo e atualiza.
+	-> No conceito de programação a imutabilidade se aplica normalmente a objetos/variáveis que não podem ter seu estado 				modificado após serem criados, mas isso não garante que os seus valores serão sempre os mesmos
+	-> Criar uma variável imutável permite que a referência ao valor na memória seja direta e não exija muito processamento para 		ser consultado. Manter os valores constantes economiza processamento de sua aplicação pois ela não precisa consultar 		sempre este item, após alocado uma vez na memória o estado se mantém.
+	-> Em arrays isto é passado por referência. Ou seja, o array original não é alterado
+			Apenas é criado um filtro e impresso no console o array com os valores desejado.
+
+-> TIPOS E VARIÁVEIS
+	-> var
+	-> let
+	-> const
+

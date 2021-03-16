@@ -1,0 +1,96 @@
+-> JAVASCRIPT
+	-> HISTÓRIA
+		-> Lançado em 1995, como Moca, liveScript, JavaScript (SunMicroSystem)
+		-> Criado por Brendan Eich
+
+	-> ECMAScript
+		-> 1996. É uma padronização da linguagem de programação.
+		-> ECMAScript é uma especificação de linguagem script criada pela Ecma International, 
+					utilizada por linguagens como: ActionScript, JScript e Javascript.
+		-> Serve como base para implementação de outras linguagens.
+		-> TC39: comite que cuida do projeto ECMAScript atualmente.
+			-> Vem para manter o projeto e as bibliotecas de JavaScript
+			-> https://github.com/tc39
+			-> https://githb.com/tc39/proposals
+
+		-> Fluxo da proposta
+			-> Stage 0: strawman
+			-> Stage 1: proposal: Etapa que surge a proposta formal da funcionalidade. Campeão da proposta tem que ser membro do TC39
+			-> Stage 2: draff
+			-> Stage 3: candidate
+			-> Stage 4: finished
+
+	-> ES2018: última especificação atual
+		-> Operadores rest/spread
+		-> Iteração assíncrona
+		-> Promisse.prototype.finally(0)
+
+	-> ES.Next: espefificação que contém futuras implementações
+
+	-> Babel : é um Compilador de JavaScript
+		-> https://babeljs.io/
+			-> Put in next-gen JavaScript 
+			-> Get browser-compatible JavaScript out
+			-> Transforma um determinada versão e uma implementação antiga para que mais browser tenham suporte
+
+-> JAVASCRIPT
+	-> Linguagem interpretada: código é executado de cima para baixo e o resultado da execução é imediatamente retornado
+		por exemplo C e C++ são compiladas em Assembly e depois executadas pelo PC
+	-> Linguagem fraca e dinâmica: não há verificação em todas as operações. É possivel somar inteiros com Strings sem erro
+	-> Dinâmica: não precisa ficar informando do tipo da variável na criação da mesma.
+			inferência de tipo: no momento que se atribui o valor a variável e que o compilador vai saber o tipo dela.
+
+-> Formar de atribuir uma variável
+	-> var, let e const.
+
+
+-> Typescript
+	-> Superset da linguagem JavaScript
+		https://www.typescriplang.org
+	-> Além de adicinar tipos em tempo de desenvolvimento, ele adiciona funcionalidades que o JavaScript não tem por padrão.
+
+-> Flow
+	-> Semelhante ao superset na checagem de tipo. Não é um superset da linguagem.
+	-> https://flow.org/en/
+
+-> Funções do primeira classe e ordem maior
+	-> Funções do primeira classe
+			-> Pode ser atribuida a uma estrutura de dados
+			-> Pode ser passada como argumentos
+			-> Atribuir essa função a uma variável
+			-> O ideal é trabalhar com funções puras e não ficar retornando função dentro de função
+
+-> Closure
+		-> Escopo léxico
+		-> Capacidade de uma função lembrar do ambiente que ela foi criada		
+		-> 3 escopos no JavaScript: Global, de Função, de Bloco (introduzido com o let e const)
+				//	escopo global
+
+				{
+					//escopo de bloco
+				 } 
+
+				 function test() {
+				 	//escopo de função
+				 }
+
+		-> Não é uma boa prática escrever em escopo global
+		-> var não respeita o escopo de bloco
+		-> let e const respeita o escopo de bloco
+		-> const é utilizado principalmente para criar constantes;
+		-> Se criar um objeto com const, NÃO posso mudar o ponteiro que ele aponta. Mas posso mudar as propriedades do objeto.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
