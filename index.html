@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<script type="text/javascript" src="js/functions.js"> </script>
+		<title> Página teste JavaScript </title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	</head>
+
+	<body onload="load()">
+		
+		<h2> Misturando html com java Script </h2>
+		<button type="button" onclick="botaoClicou()"> CLIQUE AQUI </button>
+
+		<button type="button" onclick="agradecer()"> AGRADECIMENTO CLIQUE AQUI </button>
+
+		<p id="agradecimento" onclick="redirecionar()">APENAS A FUNCAO REDIRECINAR SE CLICAR EM CIMA DO TEXTO</p>
+
+		<p id="movimentoDomouse" onmouseover="trocar(this)" onmouseout="voltar(this)">Passe o mouse aqui </p>
+
+		<p id="movimentoDomouse2" onmouseover="trocar(this)" onmouseout="voltar(this)">NOVO TESTE DE MOUSE OVER </p>
+
+		<h2 id="movimentoDomouse2" onmouseover="trocar(this)" onmouseout="voltar(this)">ULTIMO TESTE DE MOUSE OVER </h2>
+
+		<select onchange="funcaoChange(this)">
+			<option value="1"> VALOR 1 </option>
+			<option value="2"> VALOR 2 </option>
+			<option value="3"> VALOR 3 </option>
+		</select>
+
+	</body>
+<html>
+

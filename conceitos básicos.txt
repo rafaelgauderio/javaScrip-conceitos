@@ -1,0 +1,14 @@
+-> JAVASCRIPT
+	-> Linguagem de script e multiplataforma
+	-> Cliente Side - É executado do lado do cliente (usuário) e não do servidor
+	-> Tem capacidade de interagir com elementos de uma página HTML
+	-> Muito usado no desenvolvimento de páginas e também aplicativos mobiles híbridos
+	-> Linguagem de tipagem DINÂMICA (não precisa informar o tipo da variável)
+	
+-> DOM
+	-> Documento Object Model, modelo estivo uma árvore
+	-> JavaScript pode alterar todos os elementos do HTML
+	-> JavaScript pode alterar os atributos e estilos de CSS de uma página
+	
+-> tag <script>
+	-> Tudo que estiver entre essa tag vai ser um javaScript

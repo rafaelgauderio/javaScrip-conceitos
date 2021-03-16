@@ -1,0 +1,42 @@
+body {
+
+	background:#b7e8ed;
+	margin-left: 20px;
+	margin-right: 150px;
+	margin
+}
+
+title {
+	font-family: monospace;
+}
+
+nav {
+	font-family: monospace;
+	font-size: 25px;
+}
+
+header {
+	margin-top: 50px;
+	font-family: monospace;
+}
+
+h1 {
+
+	color: red;
+	font-family: fantasy;
+
+}
+
+h2 {
+	font-family: monospace;
+
+}
+
+p {
+	font-size: 17px;
+}
+
+img {
+	margin-bottom: 15px;
+}
+
