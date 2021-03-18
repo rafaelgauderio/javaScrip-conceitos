@@ -1,5 +1,7 @@
 //FUNCOES AVANCADAS ES6
+
 	//functions
+	//A palavra function, o seu nome de maneira opcional, os parênteses e as chaves para o corpo.
 	function logar(value) {
 		console.log(value);
 	}
@@ -14,6 +16,7 @@
 	};
 
 	//Arrow functions = são funções anônimas, pode ser omitido a palavra function e return
+		//realizar expressões para definir nomes de atributos através de conlchetes.
 	var sum = (a,b) => a + b;
 	console.log(sum(15,20));
 
@@ -40,6 +43,7 @@
 	}
 	console.log(new Car());
 
+	// Não podemos criar funções construtoras usando arrow functions.
 	// Se usar arrow function não pode com função construtora. Vai dar um erro
 	var Car = () => {
 		this.foo = 'bar';		
