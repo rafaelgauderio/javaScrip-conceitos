@@ -21,7 +21,7 @@
 			-> const myNumber = 15.45;
 			-> const numberAsString = myNummber.toString();
 			-> const fixedTwoDecimals = myNumber.toFixed(2);
-					numeroPi = numeroPi.toFixed(2), para retornar "3,14"
+					-> numeroPi = numeroPi.toFixed(2), para retornar "3,14"
 			-> parsetFloat('14,22'); -- converte string em float;
 			-> parseInt(13.20); -- transforma string em int;
 			-> colese.log(typeof parseInt(14.20)); -- diz qual é o tipo da variável

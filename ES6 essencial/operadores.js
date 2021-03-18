@@ -88,6 +88,7 @@
 
 		//-> Determinar o tipo;
 			typeof algo;
+			// O typeof é um operador unário que retorna em um string indicando um tipo de operando.
 
 		// instanceof
 		objeto instanceof tipoObjeto
