@@ -59,6 +59,8 @@ console.log(it.next()); //3
 console.log(it.next()); //4
 
 	// GENERATORS - colocando o * antes
+	// Podemos utilizar generators para construir objetos iteráveis?
+	// Sim, pois generators utilizam a mesma interface e podem ser utilizados para construir o iterador de um objeto iterável.
 const obj = {
 	values : [1 , 2 , 3 , 4],
 	*[Symbol.iterator]() {

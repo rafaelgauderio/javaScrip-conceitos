@@ -4,6 +4,9 @@
 	// não pode ser utilizado invocando new
 	// um Symbol nunca é igual ao outro
 	// Podem ser usados para gerar propriedades privadas
+	// iteradores são um interface para fazer iterações
+	// Tipos e objetos iteráveis possuem: Um método responsável por gerar o seu iterador,
+				// sendo acessível pela chave Symbol.iterator.
 
 const uniqueId = Symbol();
 
@@ -106,9 +109,15 @@ console.log(it.next()); // undefined , done: true
 
 
 	// fazendo um iteração sobre o objeto
+	// Obter os valores gerados através do iterador em um objeto ou tipo iterável.
 for (let value of obj) {
 	console.log(value);
 } // 1 2 3 4
+
+	// transformando o objeto em array
+const arr2 = [...obj];
+console.log(arr2);
+
 
 
 
