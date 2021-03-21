@@ -3,6 +3,7 @@
 	//Fetch aceita segundo parâmetro, por defaul vai ser um GET();
 	// async não costuma ser utilizado com await
 	// Await aguarda que a Promisse seja resolvida
+	// um Fetch retorna uma PROMISSE
 
 	fetch('/data.json').then(responseStream => {
 		console.log(responseStream);
@@ -34,7 +35,11 @@
 	// ES7 - Async / Await
 		// Uma maneira de criar promisses de maneira mais simples e enxuta
 		// inspirada em linguagens como C e C#
-		// Por colocar a palavra asunc já retorna a função de forma resolvida
+		// Por colocar a palavra asinc já retorna a função de forma resolvida
+		// Usada Apenas dentro de uma função criada utilizando a palavra async e para
+							// aguardar a resolução de uma promise.
+
+
 		const asyncTimer = () => 
 		new Promisse((resolve, reject) => {
 			setTimeout(() => {
