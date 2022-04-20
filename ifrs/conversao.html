@@ -1,0 +1,39 @@
+<h2>Conversão de variáveis </h2>
+<script>
+ var x =17;
+
+ var nome = "Rafael de Luca";
+
+//o + pode ser operação de soma ou concatenação
+// o - , * , / são apenas operações algébricas
+console.log(x);
+console.log('valor da variável x: ' + x );
+
+//resultado vai ser 1710 (vai contatenar tudo como string)
+console.log('valor de x + 10: ' + x + 10);
+//convertando antes
+console.log('valor de x + 10: ' + (x + 10));
+//agora faz primeiro a soma da esquerda e depois concatena
+console.log(10+x + " é o valor de x.");
+
+//usar o prompt com entrada
+//tudo lido via prompt é recebido como texto
+x = prompt('Informe um valor para x:');
+console.log(x);
+console.log(x+45);
+//convertando string recebida via console para numero
+console.log(Number(x)+45);
+console.log(String('1712'));
+console.log(Boolean('rafael'));
+console.log(Boolean(0));
+
+var y = prompt('Digite um valor para x: ');
+var dobro = Number(y) * 2;
+console.log(y);
+console.log(dobro);
+
+
+
+
+
+</script>
