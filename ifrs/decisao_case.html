@@ -1,0 +1,43 @@
+ <h2>Estruturas de repeticao case e datas</h2>
+<script>
+var data = new Date().getDay();
+var dia=null;
+switch (data) {
+   case 0:
+      dia = "Domingo";
+      break;
+   case 1:
+      dia = "Segunda-feira";
+      break;
+   case 2:
+      dia = "Terça-feira";
+      break;
+   case 3:
+      dia = "Quarta-feira";
+      break;
+   case 4:
+      dia = "Quinta-feira";
+      break;
+   case 5:
+      dia = "Sexta-feira";
+      break;
+   case 6:
+      dia = "Sábado-feira";
+      break;
+   default:
+      dia = "Informaste uma data inválida!";
+      break;
+}
+
+document.write("Dia da semana: " + dia);
+document.write("<br>Dia da mês: " + new Date().getDay());
+document.write("<br>Mês do ano: " + new Date().getMonth());
+//ano começa em 1970
+document.write("<br>Ano: " + new Date().getFullYear());
+data2 = new Date();
+data3 = new Date("12/17/1995");
+document.write("<br>Hora: " + data2.getHours() + ":" + data2.getMinutes() + ":" + data2.getSeconds());
+document.write("<br" + data3);
+
+
+</script>
