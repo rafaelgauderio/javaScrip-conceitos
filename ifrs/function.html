@@ -1,0 +1,30 @@
+ <h2>Funções em JavaScript </h2>
+<script>
+
+var x = 15;
+
+document.write("O let tem um escopo mais local que o var. Varíavel existe apenas dentro do bloco.<br>");
+document.write("O let não deixa redeclarar a mesma variável<br>");
+document.write("let mais usado para programar atualmente.")
+
+
+function triplo(n) { 
+   var y=100;
+   document.write("<br>valor de y: " + y);         
+   return n *3;
+}
+
+function metade(n) {
+   return n/2;
+
+}
+
+//x é um variavel global
+//y tem um escopo local da funcao, escopo dele é por bloco { }, variável só existe dentro do bloco
+document.write("<br>O triplo de x: " + triplo(x));
+//vai dar erro porque y é variavel local
+//document.write(y); 
+//document.write("<br>O tripo de y: " + triplo(y));
+document.write("<br>500 dividido por 2: " + metade(500));
+
+</script>
