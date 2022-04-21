@@ -1,0 +1,48 @@
+ <h2>String com js</h2>
+
+ <script>
+var vetor = [22,17,25,'Rafael',true,false,'Claudinha'];
+
+document.write(vetor);
+document.write("<br>Tamanho do vetor: " + vetor.length);
+document.write("<br>Quarto elemento do vetor: " + vetor[3]);
+document.write("<br>Último elemento do vetor: " + vetor[vetor.length-1]);
+
+//adiciona elemento no final
+vetor.push(45);
+vetor.push("Julia");
+vetor.push(3.1415);
+document.write("<br>");
+document.write(vetor);
+
+
+
+// pop retira o ultime elemento e retorna ele
+elemento = vetor.pop();
+document.write("<br>");
+document.write("Elemento removido: " + elemento);
+document.write("<br>");
+document.write(vetor);
+document.write("<br>");
+
+//removendo o primento elemento
+vetor.shift();
+document.write(vetor);
+document.write("<br>");
+//inserir no inicio
+vetor.unshift('Larissa');
+document.write(vetor);
+document.write("<br>");
+document.write("<br>");
+//juntando todo o vetor em uma string por um separador
+document.write(vetor.join(" # "));
+
+document.write("<br>");
+
+for (i=0 ; i<vetor.length; i++) {
+	document.write("Elemento do vetor na posicão: " + i + " é " + vetor[i] + "<br>");
+}
+
+
+
+</script>
