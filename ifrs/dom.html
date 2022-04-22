@@ -14,27 +14,25 @@
 <br>
 <label><input type="submit" name='enviar'></label>
 <br>
+<h3>Primeiro rodapé</h3>
+<h5>Segundo rodapé</h5>
+<h4>Terceiro rodapé</h4>
+
 
 <script>
 
 var elemento1 = document.getElementById('titulo');
-document.write(elemento1);
 console.log(elemento1);
-document.write("<br>");
+
 
 //retorna um array de elementos
 var elemento2 = document.getElementsByTagName('h4');
 var elemento3 = document.getElementsByTagName('h4')[0];
 var elemento4 = document.getElementsByTagName('h4')[1];
-document.write(elemento2);
 console.log(elemento2);
-document.write("<br>");
-document.write(elemento3);
 console.log(elemento3);
-document.write("<br>");
-document.write(elemento4);
 console.log(elemento4);
-document.write("<br>");
+
 
 //buscando por classe
 var el5 = document.getElementsByClassName('conteudo');
@@ -80,12 +78,33 @@ el7.setAttribute('type','checkbox');
 // retorno o primeiro elemento que satisfaço esse seletor
 var el9 = document.querySelector('p a');
 var e10 = document.querySelectorAll('p a');
-
-el9.setAttribute('href','https://www.delucahigiene.com.br')
-
-
+var el11 = document.getElementsByTagName('p')[0];
+var el12 = el11.children[0];
 
 
+//navegando para baixo usar o children e navegando para o elemento acima usar parentNode
+//maneira diferentes de capturar o elemento link
+el9.setAttribute('href','https://www.delucahigiene.com.br');
+el12.setAttribute('href','https://www.delucahigiene.com.br');
+
+//capturando o pai do link. link dentro da tag p
+var el13 = el9.parentNode;
+console.log(el13);
+
+//CRIAÇÃO ELEMENTOS
+var el15 = document.createElement('hr'); //elemento criado em memória
+var el16 = document.createElement('hr'); //elemento criado em memória
+var el17 = document.createElement('hr'); //elemento criado em memória
+el12.appendChild(el15); //agora criando o elemento
+elemento1.appendChild(el16); //agora criando o elemento
+document.body.appendChild(el17);
+
+//REMOÇÃO DE ELEMENTOS
+var elemento18 = document.getElementsByTagName('h3')[0];
+var elemento19 = document.getElementsByTagName('h4')[2];
+var elemento20 = document.getElementsByTagName('h5')[0];
+elemento19.remove();
+elemento20.remove();
 
 
 
