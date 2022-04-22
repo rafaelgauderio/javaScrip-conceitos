@@ -1,0 +1,41 @@
+ <h2>Confirmação com js</h2>
+ <script>
+
+
+ if(confirm("Você concorda?")) {
+	//se clicar em ok
+	document.write("Ok");
+} else {
+	//se clicar em cancelar
+	document.write("NÃO");
+}
+
+document.write("<br>");
+
+
+do {
+
+	var x = prompt("Informe um valor");
+	document.write("Valores informados: " + x + "<br>");
+
+
+} while (confirm("CLique em ok para continuar ou cancelar para encerrar."));
+
+
+document.write("<br>");
+
+
+// operador === testa o valor é o tipo da variável
+document.write("<br>");
+
+var x = '17';// number
+if( x ==='17') {
+	document.write(x + " o tipo de x é IGUAL de uma string escrito 17.");
+} else if (x ===17) {
+	document.write(x + " o tipo de x é IGUAL ao número 17.");
+} 
+
+
+
+
+</script>
