@@ -1,0 +1,92 @@
+<h2 id='titulo'>Manipulação do DOM</h2>
+<h4>Manipulação de elementos HTML</h4>
+<h4>Segundo Subtítulo</h4>
+
+<p class="conteudo">
+   Enviar texto e um <a target="_blank" href="https://www.google.com">link</a>
+</p>
+
+<div class="conteudo">
+   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+</div>
+
+<label>Campo idade: <input name='idade' placeholder="idade"></label>
+<br>
+<label><input type="submit" name='enviar'></label>
+<br>
+
+<script>
+
+var elemento1 = document.getElementById('titulo');
+document.write(elemento1);
+console.log(elemento1);
+document.write("<br>");
+
+//retorna um array de elementos
+var elemento2 = document.getElementsByTagName('h4');
+var elemento3 = document.getElementsByTagName('h4')[0];
+var elemento4 = document.getElementsByTagName('h4')[1];
+document.write(elemento2);
+console.log(elemento2);
+document.write("<br>");
+document.write(elemento3);
+console.log(elemento3);
+document.write("<br>");
+document.write(elemento4);
+console.log(elemento4);
+document.write("<br>");
+
+//buscando por classe
+var el5 = document.getElementsByClassName('conteudo');
+var el6 = document.getElementsByClassName('conteudo')[1];
+console.log(el5);
+console.log(el6);
+
+//buscando formulario
+var el7 = document.getElementsByName('idade')[0];
+var el8 = document.getElementsByName('enviar')[0];
+console.log(el7);
+console.log(el8);
+
+//MANIPULANDO OS ELEMENTOS
+
+//innerHTMl = tudo que estiver entre a abertura e fechamento da TAG
+
+elemento1.innerHTML = 'Novo título da página';
+elemento3.innerHTML += ' com linguagem JavaScript.';
+
+el6.style.backgroundColor = 'green';
+
+el6.style.border = '2px solid black';
+el6.style.borderRadius ='5px';
+el6.style.padding ='10px';
+el6.style.margin ='10px';
+el6.style.fontSize ='25px';
+document.getElementsByClassName('conteudo')[1].onmouseover = function() {
+    this.style.backgroundColor = 'blue';
+    this.style.color = 'white';
+    this.style.fontSize = '40px';   
+}
+document.getElementsByClassName('conteudo')[1].onmouseleave = function() {    
+    this.style.backgroundColor = 'orange';
+    this.style.color = 'black';
+    this.style.fontSize = '25px';
+}
+
+//alterando o atributo formulario
+el7.setAttribute('type','checkbox');
+
+//altendo uma tag a dentro de uma tag p
+// retorno o primeiro elemento que satisfaço esse seletor
+var el9 = document.querySelector('p a');
+var e10 = document.querySelectorAll('p a');
+
+el9.setAttribute('href','https://www.delucahigiene.com.br')
+
+
+
+
+
+
+
+</script>
