@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Exercício manipulando html com DOM </title>
+  <meta charset="utf-8">
+  <style>  
+
+  div div {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 4px;
+    background-color: white;
+  }
+  #imagem {
+    /*background-image: url('http://canoas.ifrs.edu.br/site/img/logo_novo.png');*/
+    background-image: url('http://3.bp.blogspot.com/-eRzpI1vNOVE/UnBYUPzrh-I/AAAAAAAAALU/ksaHNBANnbI/s320/%C3%8Dndice.jpeg');
+    background-position: -20px -40px;
+  }
+
+
+  </style>
+</head>
+
+
+<div id="caixas">
+ <div id="some" onclick=sumir()>Clique para eu sumir</div>
+ <div id="cor" onclick=mudarCor()>Clique para eu mudar de cor</div>
+ <div id="luz" onclick=apagarLuz()>Clique para apagar a luz</div>
+ <div id="imagem" onclick=posicaoImagem()>Clique para mudar a imagem</div>
+ <div id="fabrica" onclick=criarCaixa()>Clique para fabricar caixas</div>
+ <div id="destroi" onclick=destruirCaixa()>Clique para destruir caixas</div>
+</div>
+
+
+
+<script>
+
+function sumir() {       
+ var elemento = document.getElementById("some") 
+ elemento.style.display='none';
+}   
+
+
+function mudarCor() {
+ var elemento = document.getElementById("cor");
+ elemento.style.backgroundColor='red';
+}
+
+function apagarLuz() {       
+ document.body.style.backgroundColor='black';
+
+}
+
+function posicaoImagem() {
+ var elemento = document.getElementById("imagem");
+ elemento.style.backgroundPosition= '+100px -40px';
+}
+
+function criarCaixa() {
+ var elemento = document.getElementById('fabrica');
+ var elementoD = document.getElementById('destroi');
+ var elemento1= document.querySelector('div');
+ var elemento2 = document.querySelector('div div');   
+ var caixaNova = document.createElement('div'); 
+
+ elemento1.style.position='absolute';
+
+ caixaNova.style.display='inline';
+ caixaNova.style.position='relative';  
+
+ elemento1.appendChild(caixaNova);   
+
+}
+
+function destruirCaixa() {
+ var elemento = document.getElementById('destroi');
+ var elemento2 = document.querySelector('div > div + div + div + div + div + div + div');
+ if (elemento2!=null) {
+  elemento2.remove(); 
+}
+
+}
+
+
+</script>
