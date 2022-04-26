@@ -1,0 +1,51 @@
+ <h2>Espressões regularescom js</h2>
+
+ <script>
+/at/g //acha todas os termos com at no texto
+/s+/g /// acha s e ss (s uma ou mais vezes)
+/an*/g /// começa com a, seguido ou não com n
+/te[xs]/gi //te seguido por x ou s. g =global, i =case insensitive
+/te[xs]ts?/gi ///te seguido por x ou s , seguido de t e com ou sem s no final
+/\be/gi /// apenas inicia com e \b = word boundary = delimitador
+\e\b/gi /// tem e no final
+/\w*e\b/gi /// 0 ou mais palavras que terminam em e. Pega inclusive o e sozinho
+/\w+e\b/gi /// termina com e, tem pelo menos uma letra antes \w = qualquer letra, palavra, alfa numérico
+
+//Expressão que detecta o que está entre a tag <title>Meu titulo da pagina</title>
+/<title>.+<\/title>/gi // ponto é qualquer caracter. Retorna o título entre as tags e a tag
+/<title>(.+)<\/title>/gi //devolve apenas o título entre as tags. () retorna apenas o que está entre parenteses
+/<title>(\w*àèìòù]+)<\/title>/gi //pesquisa o título mesmo tendo acento nas vogais
+
+// usuario.sobrenome@gmail.com//buscando um email com empressão regular
+// . dentro dos colchetes quer dizer apenas ponto
+/[\w.]+@\w+\.[\w.]+/gi
+
+///web crawler (encontrar links)
+/// buscar links e retorna o endereço do link e o texto do link em grupos separados
+/<a[\w ="]+href\s*=\s*"([\w:/.]+)"[\w ="]*>([\w ]+)<\/a>/gi        /// /s representa espaço fora do colchetes
+
+///achar letra t com apenas 2 ocorr~encias
+/tt/gi
+/t{2}/gi
+/t+/gi /// t tt ttt tttt ....
+
+/// achar entre 2 a 4 letra p
+/p{2,4}/gi
+
+/// 3 ou mais k
+/k{3,}
+
+/[A-Za-z0-9_]/gi ///equivalente ao /w
+
+/\W/gi /// retorna tudo que não for /w = negacao do /w
+
+/\S/gi /// retorna tudo que não é espaço = negação de /s
+
+//conjunto negação
+/[abcdf]{2}/gi ///todos os pares que contém os pares. ae bd ed, ef
+/[^abcdef]{2}/gi /// negação do termo acima
+/^e/gi ///cincunflexo fora do colchete pega apenas o primeiro da linha (início do texto). Tudo que começa com e
+/r$/gi ///tudo que termina com r (final de texto)
+/\d/gim /// equivalente a /[0-9]/gim    /d = digitos
+
+</script>

@@ -1,0 +1,70 @@
+<div id="caixas">
+   <div id="some" onclick=sumir()>Clique para eu sumir</div>
+   <div id="cor" onclick=mudarCor('red')>Clique para eu mudar de cor</div>
+   <div id="luz" onclick=apagarLuz()>Clique para apagar a luz</div>
+   <div id="imagem" onclick=posicaoImagem()>Clique para mudar a imagem</div>
+   <div id="fabrica"onclick=criarCaixa()>Clique para fabricar caixas</div>
+   <div id="destroi" onclick=destruirCaixa()>Clique para destruir caixas</div>
+</div>
+
+<style>
+  div div {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 4px;
+    background-color: white;
+ }
+ #imagem {
+    /*background-image: url('http://canoas.ifrs.edu.br/site/img/logo_novo.png');*/
+    background-image: url('http://3.bp.blogspot.com/-eRzpI1vNOVE/UnBYUPzrh-I/AAAAAAAAALU/ksaHNBANnbI/s320/%C3%8Dndice.jpeg');
+    background-position: -20px -40px;
+ }
+</style>
+
+<script>
+
+function sumir() {       
+   var elemento = document.getElementById("some") 
+      elemento.style.display='none';
+ }   
+
+
+function mudarCor(cor) {
+   var elemento = document.getElementById("cor");
+   elemento.style.backgroundColor=cor;
+}
+
+function apagarLuz() {       
+   document.body.style.backgroundColor='black';
+   
+}
+
+function posicaoImagem() {
+   var elemento = document.getElementById("imagem");
+   elemento.style.backgroundPosition= '+100px -40px';
+}
+
+function criarCaixa() {
+   var elemento = document.getElementById('fabrica');
+   var caixaNova = document.createElement('div');
+   var elemento2 = document.querySelector('div div div');
+   caixaNova.style.position='relative';
+   caixaNova.style.left='212px';
+   caixaNova.style.top='-41px';
+   //caixaNova.style.display='inline-block';
+   elemento.appendChild(caixaNova);   
+   
+
+}
+
+function destruirCaixa() {
+   var elemento = document.getElementById('destroi');
+   var elemento2 = document.querySelector('div div div');
+   elemento2.remove();
+   
+}
+
+
+</script>
