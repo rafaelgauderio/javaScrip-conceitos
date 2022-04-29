@@ -1,0 +1,59 @@
+ <h2>Espressões regularescom js</h2>
+ <h4>Códigos de expressões regulares</h4>
+
+ <script>
+
+//tag html
+/<([^<>]+)>.*?<\/\1>
+
+///dna
+[ATGC]+
+
+//Nome de variáveis
+[A-Za-z][\w]*
+
+//buscar links (endereço dentro href)
+href="(.*?)"
+
+//Cor html
+#[A-Fa-f0-9]{6}
+
+//Data
+\d{2}/\d{2}/\d{4}
+
+//pontos flutuantes
+//sinal, expoente, mantissa
+\b[-+]?[0-9]*\.?[0-9]+([eE[-+]?][0-9]+)?\b
+
+//número de IP
+(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)
+
+//endereço hexadecima
+0[xX][\da-fA-F]{4}
+
+//Uma frase entre parênteses
+\((.|[\s\b])*?\)
+
+//Telefone
+\(\d{2}\)\s?\d{4,5}-\d{4}
+
+//Palindromo de 2 até 5 letras
+// AMOR == ROMA
+\b(\w?)(\w?)(\w?)(\w?)(\w)\w\5\4\3\2\1\b
+
+//email
+[A-Z0-9._%+-]+@[A-Z0-9.+]+\.[A-Z]{2,4}
+
+//URL
+(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?
+
+///qualquer letra seguido pela mesma letra
+(\w)\1
+
+
+
+
+
+
+
+</script>
