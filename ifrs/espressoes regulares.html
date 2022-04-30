@@ -1,5 +1,22 @@
- <h2>Espressões regularescom js</h2>
+<style>
+	ol {
+		
+		list-style: decimal;
+		margin: 20px;
+		padding: 15px;
+		font-size: 20px;
+		font-family: "Arial Black";
+	}
 
+		
+</style>
+<h2>Espressões regularescom js</h2>
+<h3><a href="https://regex101.com" target="_blank">Regex101</a></h3>
+ <ol>
+ 	<li>Busca por padrões em textos</li>
+ 	<li>Validações em textos</li>
+ 	<li>Substituições em textos</li>	
+</ol>
  <script>
 /at/g //acha todas os termos com at no texto
 /s+/g /// acha s e ss (s uma ou mais vezes)
@@ -47,5 +64,26 @@
 /^e/gi ///cincunflexo fora do colchete pega apenas o primeiro da linha (início do texto). Tudo que começa com e
 /r$/gi ///tudo que termina com r (final de texto)
 /\d/gim /// equivalente a /[0-9]/gim    /d = digitos
+
+/[0-9]/gi  //busca tudo entre zero e nove
+/[0-9]{5}/gi //5 primeiro digitos de todas as linhas
+$ //fim da linha
+^ // começo da linha
+^[0-9]{4} //descata os 4 primeiros digitos de cada linha
+^[0-9]+[-][a-z]$ //codigos que começam digitos, tem um traço e depois uma letra = 566380-p
+
+//validando um cpf no formato 999.999.999-99
+[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}
+
+//substituindo em uma data yyyy/DD/MM
+//localizando as datas
+//parentes representam o grupo
+([0-9]{4)[-]([0-9]{2})-([0-9]{2})
+//grupo 1 	grupo 2 	grupo 3
+$3/$2/$1
+//cologou o grupo 3 na frente (dia), depois o mês e por ultimo o ano (grupo 3)
+//funções match e replace 
+
+
 
 </script>
