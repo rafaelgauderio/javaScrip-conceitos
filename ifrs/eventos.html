@@ -1,91 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <title>Exercício Eventos com JavaScript </title>
-  <meta charset="utf-8">
-  <style>
-     html {
-         background-color: aqua;
-     }
+    <title>Exercício Eventos com JavaScript </title>
+    <meta charset="utf-8">
+    <style>
+        html {
+            background-color: aqua;
+        }
 
-     ol {        
-		
-		list-style: decimal;
-		margin: 20px;		
-		font-size: 15px;
-		font-family: "Arial Black";
-        color:tomato;
-	
-     }
+        ol {
 
-     li > ol  {
-         margin:0px;
-         color:blue;
-     }
+            list-style: decimal;
+            margin: 20px;
+            font-size: 15px;
+            font-family: "Arial Black";
+            color: tomato;
 
-     div{
-         margin:10px;
+        }
 
-     }
+        li>ol {
+            margin: 0px;
+            color: blue;
+        }
 
-     button {
-         padding: 5px;
-         border-radius: 5px;
-         border: solid 2px;
-     }
+        div {
+            margin: 10px;
 
-     
-     #vermelha {
-                 
-         width: 100px;
-         height: 100px;
-         border-radius: 10px;
-         border:   2px solid black;
-         background-color: red;
+        }
 
-     }     
- </style>
- </head>
- 
- <h2>Eventos com JavaScript</h2>
- <h3>Eventos (acontecimentos): disparar um código em determinadas situações.</h3>
- <ol>
-     <li>inline: colocar o evento direto na tag.</li>
-     <li>listener: capturar o onde disparar o evento e depois chamar o evento.
-         <ol>
-             <li>Tudo que começar com on na lista console.log(window) é evento.</li>
-             <li>Object Event: Colocar argumento na função ActionListener.</li>
-         </ol>
-     </li>
- </ol>
-
- <div onclick="funcao_click()"><button>Clique simples (pressionar e soltar)  aqui</button></div>
- <div ondblclick="funcao_doubleClick()"><button>Dê um duplo clique aqui</button></div>
- <div onmousedown="funcao_click()"><button>Mouse down (pressiona) aqui</button></div>
- <div onmouseup="funcao_click()"><button>Mouse up (solta) aqui</button></div>
- <div><button>Botão ActionListener</button></div>
- <div><button>Botão ActionListener Mouse Up</button></div>
- <div><button>Botão ActionListener Passar o mouse por cima (mouseenter)</button></div>
- <div><button>Botão ActionListener mostrar o console.log(window)</button></div>
- <div><button>Clique aqui para ver o Object Event</button></div>
- <div id="vermelha" style="position:relative; left:0; top:0;"></div>
+        button {
+            padding: 5px;
+            border-radius: 5px;
+            border: solid 2px;
+        }
 
 
+        #vermelha {
 
- <script>
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            border: 2px solid black;
+            background-color: red;
 
-     
+        }
+
+        input {
+            margin: 2px;
+            display: block;
+        }
+    </style>
+</head>
+
+<h2>Eventos com JavaScript</h2>
+<h3>Eventos (acontecimentos): disparar um código em determinadas situações.</h3>
+<ol>
+    <li>inline: colocar o evento direto na tag.</li>
+    <li>listener: capturar o onde disparar o evento e depois chamar o evento.
+        <ol>
+            <li>Tudo que começar com on na lista console.log(window) é evento.</li>
+            <li>Object Event: Colocar argumento na função ActionListener.</li>
+        </ol>
+    </li>
+    <li>Formulários</li>
+    <li>Timers (despertadores</li>
+</ol>
+<h3>Formulario</h3>
+<form onsubmit="return validaFormulario(this)">
+    Nome Completo: <input name="nome" id="nome">
+    Idade: <input type="text" name="idade" id="idade">
+    <input type="submit">
+</form>
+
+<h3>Timers</h3>
+<input type="button" onclick="iniciaTimer()" value="Inicia Timer">
+<input type="button" onclick="paraTimer()" value="Parar Timer">
+
+<div onclick="funcao_click()"><button>Clique simples (pressionar e soltar) aqui</button></div>
+<div ondblclick="funcao_doubleClick()"><button>Dê um duplo clique aqui</button></div>
+<div onmousedown="funcao_click()"><button>Mouse down (pressiona) aqui</button></div>
+<div onmouseup="funcao_click()"><button>Mouse up (solta) aqui</button></div>
+<div><button>Botão ActionListener</button></div>
+<div><button>Botão ActionListener Mouse Up</button></div>
+<div><button>Botão ActionListener Passar o mouse por cima (mouseenter)</button></div>
+<div><button>Botão ActionListener mostrar o console.log(window)</button></div>
+<div><button>Clique aqui para ver o Object Event</button></div>
+<div id="vermelha" style="position:relative; left:0; top:0;"></div>
+
+
+
+<script>
+
+
     function funcao_click() {
         alert('Obrigado por clicar aqui');
-    } 
+    }
 
     function funcao_doubleClick() {
         alert('Obrigado pelo duplo click');
-    } 
+    }
 
     function funcaoPassarMouse() {
         alert('Obrigado por PASSAR O MOUSE');
-    } 
+    }
 
     function mostraConsoleWindow() {
         alert("Funcionou o console.log(window).");
@@ -104,9 +122,31 @@
                 break;
         }
     }
-    
+
+    function validaFormulario(formulario) {
+        //var idade = formulario.idade.value;
+        //alert(formulario.nome.value);
+        var idade = formulario.idade.value;
+        if (formulario.nome.value.split(' ').length < 2) {
+            alert("Preencha o seu nome completo");
+            formulario.nome.focus();
+            return false;
+        } else if (formulario.idade.value <= 18) {
+            alert("Formulário destinado apenas a MAIORES de 18 anos");
+            formulario.idade.focus();
+            return false;
+
+        } else {
+            alert("Fórmulário enviado com sucesso");
+            return true;
+        }
+
+
+
+    }
+
     //eventos de teclado
-    window.addEventListener("keydown",funcaoTeclado);    
+    window.addEventListener("keydown", funcaoTeclado);
 
     function funcaoTeclado(evento) {
         //alert("Funcionou captura do teclado. pressiona F12");
@@ -114,32 +154,48 @@
         switch (evento.code) {
             case "ArrowUp": vermelha.style.top = (parseInt(vermelha.style.top) - 2) + 'px';
                 break;
-            case "ArrowDown": vermelha.style.top = (parseInt(vermelha.style.top) + 2)  + 'px';
+            case "ArrowDown": vermelha.style.top = (parseInt(vermelha.style.top) + 2) + 'px';
                 break;
             case "ArrowLeft": vermelha.style.left = (parseInt(vermelha.style.left) - 2) + 'px';
                 break;
             case "ArrowRight": vermelha.style.left = (parseInt(vermelha.style.left) + 2) + 'px';
-                break;    
+                break;
         }
-        
-    }    
-  
-    
+
+    }
+
+
     //capturarando a quinta div
     var divQuinta = document.getElementsByTagName('div')[4];
-    divQuinta.addEventListener('click',funcao_click);
+    divQuinta.addEventListener('click', funcao_click);
 
     var divSexta = document.getElementsByTagName('div')[5];
-    divSexta.addEventListener('mouseup',funcao_click);
+    divSexta.addEventListener('mouseup', funcao_click);
 
     var botaoSetimo = document.getElementsByTagName('button')[6];
-    botaoSetimo.addEventListener('mouseenter',funcaoPassarMouse);
+    botaoSetimo.addEventListener('mouseenter', funcaoPassarMouse);
 
     var botao8 = document.getElementsByTagName('button')[7];
-    botao8.addEventListener('mouseenter',mostraConsoleWindow);
+    botao8.addEventListener('mouseenter', mostraConsoleWindow);
 
     var botao9 = document.getElementsByTagName('button')[8];
-    botao9.addEventListener('mousedown',mostraConsoleEvento);
+    botao9.addEventListener('mousedown', mostraConsoleEvento);
+
+
+    var timer = null;
+    function iniciaTimer() {
+        //tempo está em mili segundos
+        timer = setInterval(disparaTimer,3000);
+    }
+
+    function disparaTimer() {
+        alert('Iniciado o TIMER');
+    }
+
+    function paraTimer() {
+        clearTimeout(timer);
+    }
+
 
 
 
