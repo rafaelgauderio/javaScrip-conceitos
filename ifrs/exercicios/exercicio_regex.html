@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Formulario com validacao de regex em javaScript </title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+
+		}
+
+		h1 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 1px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+
+		form {
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid black;
+			border-radius: 5px;
+			background: linear-gradient(to bottom, #eea 0%, #00FFFF 100%);
+
+
+		}
+
+		input {
+			padding: 5px;
+		}
+
+		label {
+			width: 220px;
+			display: inline-block;
+		}
+	</style>
+
+
+</head>
+
+
+
+<body>
+	<h1>Formulário</h1>
+	<form method="post" onsubmit="return validaFormulario(this)">
+		<fieldset>
+			<legend>Dados do formulário </legend>
+			<label>Nome Completo: <input type="text" name="nome" placeholder="Nome" required></label><br>
+			<label>Senha: <input type="password" name="senha" placeholder="Senha" required></label><br>
+			<label>Email: usuario@dominio.local<input type="text" name="email" placeholder="E-mail"
+					required></label><br>
+			<label>Data Nascimento: DD/MM/YYYY<input type="text" name="datanasc" placeholder="Data de Nascimento"
+					required></label><br>
+			<label>Endereço: <input type="text" name="endereco" placeholder="Endereço" required></label><br>
+			<label>Telefone: (XX)XXXX-XXXX <input type="text" name="telefone" placeholder="telefone"
+					required></label><br>
+		</fieldset>
+		<br>
+
+		<input type="submit" value="Enviar formulário">
+
+
+
+
+
+
+
+	</form>
+
+	<script>
+		function validaFormulario(formulario) {
+			var email = formulario.email.value;
+			var regexEmail = /[A-Z0-9._%+-]+@[A-Z0-9.+]+\.[A-Z]{2,4}/ig;
+			var resultEmail = regexEmail.exec(email);
+
+			var dataNascimento = formulario.datanasc.value;
+			var regexDataNasc = /\d{2}\/\d{2}\/\d{4}/ig;
+			var resultDataNasc = regexDataNasc.exec(dataNascimento);
+
+			var telefone = formulario.telefone.value;
+			var regexTelefone = /\(\d{2}\)\s?\d{4}-\d{4}/ig;
+			var resultTelefone = regexTelefone.exec(telefone);
+
+			if (resultEmail == null) {
+				alert("Informe um EMAIL com formato válido");
+				formulario.email.focus();
+				return false;
+			} else if (resultDataNasc == null) {
+				alert("Informe uma data de nascimento com o formato DD/MM/YYYY");
+				formulario.datanasc.focus();
+				return false;
+			} else if (resultTelefone == null) {
+				alert("Informe um telefone com o formato (XX) XXXX-XXXX");
+				formulario.telefone.focus();
+				return false;
+			}
+			else {
+				alert("Formulário enviado com sucesso!");
+				return true;
+			}
+
+		}
+	</script>
+
+</body>
+
+</html>
