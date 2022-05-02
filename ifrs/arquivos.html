@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Armazenamento de dados e Manipulação de arquivos em javaScript </title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			background-color: aquamarine;
+
+		}
+
+		h1 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 1px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+
+		img {
+			margin:10px;
+			width:900px;		
+
+		}
+	</style>
+
+
+</head>
+
+
+
+<body>
+
+	<h2>Armazenamento de dados e Manipulação de arquivos em javaScript</h2>
+	<ol>
+		<li>Web Storage APi: informações ficam apenas no CLIENT</li>
+		<li>JSON</li>
+		<li>API de arquivos</li>		
+		<li>DATA URL´s</li>
+	</ol>
+	<h3>Lendo arquivo</h3>
+	<input type="file" onchange="funcaoMudar(this)" multiple>
+
+	<h3>Lendo Imagens</h3>
+	<input type="file" id="arquivoImagem" name="arquivoImagem" onchange="mudarArquivoImagem(this)">
+	<div id="resultado"></div>
+
+
+	<script>
+		//store sempre guarda valor como string. Tem que converter para int ou double para fazer operações
+		//3 formar de armazenar valor no storage
+		localStorage.setItem('x', 17);
+		localStorage.y = 35;
+		localStorage["z"] = 29;
+		var nome = 'w';
+		localStorage[nome] = 89;
+
+		//deletando valores
+		//localStorage.removeItem('x');
+		localStorage.removeItem(nome);
+		localStorage.z = parseInt(localStorage.x) + parseInt(localStorage.y);
+
+		//apagando tudo
+		//localStorage.clear();
+
+		//nomes das variáveis armazenadas
+		document.write("<br>"+ localStorage.key(0) + "<br>");
+		document.write(localStorage.key(1) + "<br>");
+		document.write(localStorage.key(2) + "<br>");
+		document.write(localStorage.key(3) + "<br>");
+
+		for (var i = 0; i < localStorage.length; i++) {
+			document.write(localStorage.key(i) + ":" + localStorage[localStorage.key(i)] + "<br>");
+		}
+
+
+		var objeto = {primeiroNome: "Rafael", sobrenome: "De Luca", datanasc: new Date('1995-12-17 0:00'),}
+		document.write(Object.values(objeto));
+
+		document.write("<br><br>Usando JSON<br>");
+		document.write(JSON.stringify(objeto));
+
+		//armazendo no storage
+		localStorage.pessoa = JSON.stringify(objeto);
+		//converterdo de string para objeto novamente
+		var pessoa = JSON.parse(localStorage.pessoa);
+		document.write("<br>");
+		document.write(Object.values(pessoa));
+		document.write("<br>" + pessoa.primeiroNome);
+		document.write("<br>" + pessoa.datanasc);
+
+		
+		function funcaoMudar(input) {
+			//contem os meta dados do arquivo
+			console.log(input.files[0]);
+			console.log(input.files);
+			var arquivo = input.files[0];
+			var reader = new FileReader();
+			//define o que fazer quando terminar de ler e depois terminar de ler
+			reader.onload = completar;
+			reader.readAsText(arquivo);
+		}
+
+		function completar(evento) {
+			document.write("<br>");
+			document.write(evento.target.result);
+		}
+
+		function mudarArquivoImagem(input) {
+			var arquivo = input.files[0];
+			var reader = new FileReader();
+			reader.onload=carregarArquivo;
+			reader.readAsDataURL(arquivo); // carrega qualquer tipo de arquivo
+		}
+
+		function carregarArquivo(evento) {
+			if(evento.target.result.slice(5,10) === 'image') {
+				var imagem = document.createElement("img");
+				imagem.src = evento.target.result;
+				resultado.appendChild(imagem);
+			} else {
+				var link = document.createElement('a'); //senão for uma imagem, cria um link pro arquivo
+				var quebra = document.createElement('br');
+				link.href = evento.target.result;
+				link.innerHTML = "Arquivo";
+				resultado.appendChild(link);
+				resultado.appendChild(quebra);	
+
+			}
+		}
+
+
+
+
+	</script>
+
+</body>
+
+</html>
