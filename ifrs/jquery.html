@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> jQuery Biblioteca javaScript</title>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			background-color: aquamarine;
+
+		}
+
+		div {
+			background-color: darkorange;
+			width: 500px;
+			border: 2px solid blueviolet;
+			padding: 10px;
+			margin: 5px;
+			border-radius: 5px;
+			font-size: large;
+			
+		}
+
+		ol,
+		li {
+			list-style: upper-roman;
+			padding: 5px;
+			margin: 2px;
+		}
+
+		h2 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+
+		img {
+			margin: 10px;
+			width: 1000px;
+
+		}
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<h2>Biblioteca jQuery para javaScript</h2>
+	<ul>
+		<li>Manipulação de elementos do DOM.</li>
+		<li>Faz transições e animações</li>
+		<li>Recurso de Ajax</li>
+		<li>Biblioteca em declínio de uso</li>
+		<li>Muitos recursos da jQuery agora são nativos do javaScript</li>
+	</ul>
+
+	<div>"Rafael de Luca"</div>
+	<div>"jQuery javaScript"</div>
+	<div id="oculta" style="display: none">show() Aparece a div com display:none</div>
+	<div id="desaparece">hide() div desaparece depois de uns milisegundos</div>
+	<div id="toggle" style="display: none">Toggle: Aparece de tiver invisível e desaparece se estiver insível</div>
+	<div id="fadeOut">fadeOut</div>
+	<div id="fadeIn" style="display: none">fadeIn</div>
+	<div id="fadeToggle">fadeToggle</div>
+	<div id="slideUp">slideUp</div>
+	<div id="slideDown" style="display: none">slideDown</div>
+	<div id="slideToggle">slideToggle</div>
+	<div id="animacao">Animação Personalizada</div>
+	<div id="encadeamento">Encadamento de ações</div>
+
+
+	<script>
+		//sintaxe jquery
+		//$(seletor).acao()
+		//$("div").hide();
+		$('#oculta').show();
+		$("#desaparece").hide(5000);
+		$("#toggle").toggle(5000);
+		$('#fadeOut').fadeOut(5000);
+		$('#fadeIn').fadeIn(5000);
+		$('#fadeToggle').fadeToggle(5000);
+		$('#slideUp').slideUp(8000);
+		$('#slideDown').slideDown(8000);
+		$('#slideToggle').slideToggle(8000);
+		$("#animacao").animate({marginLeft: "550px", marginTop:"-400px"},10000, function (){alert("Acabou a animação Personalizada!")});
+		$("#encadeamento").hide(5000).show(5000).fadeOut(7000);
+
+
+
+
+		
+		
+
+	</script>
+
+</body>
+
+</html>
