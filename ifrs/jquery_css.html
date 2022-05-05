@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> jQuery Biblioteca javaScript</title>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			background-color: turquoise;
+
+		}
+
+		div {
+			background-color: yellowgreen;
+			width: 500px;
+			height: 150x;
+			border: 2px solid darkgreen;
+			padding: 10px;
+			margin: 5px;
+			border-radius: 5px;
+			font-size: large;
+
+		}
+
+		ol,
+		li {
+			list-style: upper-roman;
+			padding: 5px;
+			margin: 2px;
+		}
+
+		h2 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+
+		.blue {
+			border: 3px dashed rgb(112, 110, 25);
+			background-color: blue;
+			height: 150px;
+			color: white;
+			text-align: center;
+			line-height: 150px;
+
+		}
+
+		input {
+			border: 2px solid black;
+			margin: 5px;
+			padding: 10px;
+			font-size: large;
+			height: 50px;
+		}
+
+		div > div {
+			width:250px;
+		}
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<h2>Biblioteca jQuery para javaScript manipulando css</h2>
+	<div id="red">Texto da classe red</div>
+	<div id="red2">Outro texto qualquer</div>
+	<div id="comBLue">toggleClass() com um addClass() antes</div>
+	<div id="semBlue">toggleClass() adicionando a class blue</div>
+	<input placeholder="Nome Completo">
+	<div id="parent">Div Parent
+		<div>Div filho</div>
+		<div>Div Segundo children</div>
+	</div>
+	<div id="pai"">Div Pai
+		<div class="filho">Div filho</div>
+		<div class="filho">Div Segundo children</div>
+	</div>
+	<div id="evento">Eventos no click</div>
+
+	<script>
+		//colocar o css da class blue na id=red
+		$("#red").addClass("blue");
+		$("#red2").addClass("blue").removeClass("blue");
+		//toggle tira a que tem classe adicionada e coloca na que não tem class adiciona. Funciona como um interruptor
+		$("#comBlue").addClass("blue").toggleClass("blue");
+		$("#semBlue").toggleClass('blue');
+		$("div + input").css({ backgroundColor: 'silver', borderRadius: '20px', borderStyle: 'groove', width: '300px' });
+		//esconder as div filhos depois de 5 segundos
+		$("#parent").children().hide(5000);
+		$(".filho").parent().fadeOut(7000);
+		$("#evento").click(function() {
+			alert("Click em ok!");
+		})
+
+	</script>
+
+</body>
+
+</html>
