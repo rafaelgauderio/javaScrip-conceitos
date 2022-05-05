@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> jQuery Biblioteca javaScript</title>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			background-color: wheat;
+
+		}
+
+		div {
+			background-color: yellowgreen;
+			width: 500px;
+			height: 150x;
+			border: 2px solid darkgreen;
+			padding: 10px;
+			margin: 5px;
+			border-radius: 5px;
+			font-size: large;
+			
+		}
+
+		ol,
+		li {
+			list-style: upper-roman;
+			padding: 5px;
+			margin: 2px;
+		}
+
+		h2 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+
+		input {
+			margin: 5px;
+			border-radius: 5px;
+			height: 50px;
+			width: 300px;
+			text-align: center;
+			word-wrap:break-word;
+
+		} 
+		input[type=button] {
+			margin: 5px;
+			background-color: red;
+			border: 3px solid black;
+			color: white;
+			font-size: larger;
+			cursor:pointer;
+			
+		}
+		
+		#texto {
+			width: 800px;
+		}
+
+		#semConteudo {
+			background-color: blue;
+		}
+		
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<h2>Biblioteca jQuery para javaScript com texto</h2>
+	
+	<div id="texto" >.text() Alterar o texto da div</div>
+	<div id="textoHtml" >.html() Alterar o texto da div</div>
+	<div>.html() div sem texto dentro</div>
+	<input onblur="alert($('input').val())">
+	<br>	
+	<input type="text" id="virarbotao">
+	<br>	
+	<input type="text" id="virarbotaodata">
+	<div id="removida"></div>
+	<div id="semConteudo">Remove conteudo da div
+		<h3>título dentro da div que vai ser removido</h3>
+	</div>
+
+	<script>		
+		$("#texto").text(" Novo texto ");
+		//html muda o conteudo e permite colocar tag
+		$("#textoHtml").html('<i><b>Rafael de Luca</b></i>');
+		$('input').val("Colocando esse texto dentro dos input.");			
+		//converter um textarea para um botão
+		$('#virarbotao').val("Clique aqui").attr('type','button');
+		$('#virarbotaodata').attr('type','date');
+		$("#texto").append("...acrescenta no FINAL DENTRO da div.");
+		$("#texto").prepend("Acrescenta no INÍCIO DENTRO da div.");
+		$("#texto").before("Before da div");
+		$("#texto").after("After da div");
+		$("#removida").remove();
+		$("#semConteudo").empty();
+
+
+	</script>
+
+</body>
+
+</html>
