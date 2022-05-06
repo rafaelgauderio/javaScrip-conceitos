@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Exercício biblioteca jQuery </title>
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    div div {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin: 4px;
+      background-color: white;
+      padding: 2px;
+      text-align: center;
+    }
+
+    .black {
+      background-color: black;
+    }
+
+
+    .mover {
+      animation: forwards;
+      animation-duration: 2s;
+      animation-name: slidein;
+    }
+
+    @keyframes slidein {
+      0% {
+        margin-left: 0px;
+      }
+
+      100% {
+        margin-left: 150px;
+      }
+    }
+
+    
+  </style>
+</head>
+
+
+<div id="caixas">
+  <div id="some">Eu sumo quando clicado</div>
+  <div id="desvaneco">Eu desvaneço quando clicado</div>
+  <div id="encolho">Eu encolho quando clicado</div>
+  <div id="interruptor">Interruptor</div>
+  <div id="mover">Eu me movo quando clicado</div>
+  <div id="sensor">Sensor de Mouse</div>
+  <div id="fabrica" onclick=criarCaixa()>Eu fabrico caixas</div>
+  <div id="destroi" onclick=destruirCaixa()>Eu destruo caixas</div>
+</div>
+
+
+
+<script>
+
+
+  $("#some").click(function () {
+    $("#some").hide()
+  });
+
+
+  $("#desvaneco").click(function () {
+    $("#desvaneco").fadeOut()
+  });
+
+  $("#encolho").click(function () {
+    $("#encolho").slideUp()
+  });
+
+  $("#interruptor").click(function () {
+    $("body").toggleClass("black")
+  });
+
+  /*
+  $("#mover").click(function () {
+    $("#mover").animate({ marginLeft: "150px" }, 2000)
+  });
+  */
+
+  $("#mover").click(function () {
+    $("#mover").toggleClass("mover")
+  });
+
+  $("#sensor").mouseenter(function() {
+    $("#sensor").text("Cursor detectado!")
+  });
+
+  $("#sensor").mouseleave(function() {
+    $("#sensor").text("Sensor de Mouse")
+  });
+
+
+
+  function criarCaixa() {
+    var elemento = document.getElementById('fabrica');
+    var elementoD = document.getElementById('destroi');
+    var elemento1 = document.querySelector('div');
+    var elemento2 = document.querySelector('div div');
+    var caixaNova = document.createElement('div');
+
+    elemento1.style.position = 'absolute';
+
+    caixaNova.style.display = 'inline';
+    caixaNova.style.position = 'relative';
+
+    elemento1.appendChild(caixaNova);
+
+  }
+
+  function destruirCaixa() {
+    var elemento = document.getElementById('destroi');
+    var elemento2 = document.querySelector('div > div + div + div + div + div + div + div + div + div');
+    if (elemento2 != null) {
+      elemento2.remove();
+    }
+
+  }
+
+
+</script>
