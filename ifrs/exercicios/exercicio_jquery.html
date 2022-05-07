@@ -17,14 +17,25 @@
       text-align: center;
     }
 
+    #caixa {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin: 4px;
+      background-color: white;
+      padding: 2px;
+      text-align: center;
+    }
+
     .black {
       background-color: black;
     }
 
-
+    /*
     .mover {
       animation: forwards;
-      animation-duration: 2s;
+      animation-duration: 3s;
       animation-name: slidein;
     }
 
@@ -36,6 +47,18 @@
       100% {
         margin-left: 150px;
       }
+    }
+
+    */
+
+    #mover {
+      margin-left: 4px;
+      transition: margin-left 2000ms;
+
+    }
+
+    #mover.margem {
+      margin-left: 150px;
     }
 
     
@@ -50,8 +73,8 @@
   <div id="interruptor">Interruptor</div>
   <div id="mover">Eu me movo quando clicado</div>
   <div id="sensor">Sensor de Mouse</div>
-  <div id="fabrica" onclick=criarCaixa()>Eu fabrico caixas</div>
-  <div id="destroi" onclick=destruirCaixa()>Eu destruo caixas</div>
+  <div id="fabrica">Eu fabrico caixas</div>
+  <div id="destroi">Eu destruo caixas</div>
 </div>
 
 
@@ -77,49 +100,58 @@
   });
 
   /*
-  $("#mover").click(function () {
-    $("#mover").animate({ marginLeft: "150px" }, 2000)
+  $("#mover").click(function() {
+    $("#mover").animate({marginLeft:'150px'},2000).animate({marginLeft:'4px'}, {duration:2000})    
   });
-  */
+  
 
+  $("#mover").click(function() {
+    $("#mover").animate({marginLeft:'150px'},2000).click(function() {
+      $("#mover").animate({marginLeft:'4px'})
+    });
+    }); 
+
+    */
   $("#mover").click(function () {
-    $("#mover").toggleClass("mover")
+    $("#mover").toggleClass("margem");
   });
 
-  $("#sensor").mouseenter(function() {
+
+
+  $("#sensor").mouseenter(function () {
     $("#sensor").text("Cursor detectado!")
   });
 
-  $("#sensor").mouseleave(function() {
+  $("#sensor").mouseleave(function () {
     $("#sensor").text("Sensor de Mouse")
   });
 
 
 
-  function criarCaixa() {
-    var elemento = document.getElementById('fabrica');
-    var elementoD = document.getElementById('destroi');
-    var elemento1 = document.querySelector('div');
-    var elemento2 = document.querySelector('div div');
-    var caixaNova = document.createElement('div');
+  $("#fabrica").click(function () {
 
-    elemento1.style.position = 'absolute';
+    var caixaNova = $("<div id='caixa'>");
+    $("#fabrica").after(caixaNova);
 
-    caixaNova.style.display = 'inline';
-    caixaNova.style.position = 'relative';
+  });
 
-    elemento1.appendChild(caixaNova);
+  /*
+//Exemplo que se eu quisesse adicionar ao final não depois da div id=fabrica
+$("#fabrica").click(function () {
+  $("<div id='caixa'>Adicionar ao final </div>").appendTo("body");
+});
+*/
 
-  }
 
-  function destruirCaixa() {
-    var elemento = document.getElementById('destroi');
-    var elemento2 = document.querySelector('div > div + div + div + div + div + div + div + div + div');
-    if (elemento2 != null) {
-      elemento2.remove();
-    }
+  $("#destroi").click(function () {
+    $("#caixa").remove();
+    //var elemento = document.querySelector('div > div + div + div + div + div + div + div + div');
+    //if (elemento != null && elemento != (destroi)) {
+    // elemento.remove();
+    //}
+  });
 
-  }
+
 
 
 </script>

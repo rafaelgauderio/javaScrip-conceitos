@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		How to disable jQuery animation?
+	</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+
+	<style>
+		.box {
+			background: green;
+			height: 100px;
+			width: 100px;
+			margin: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<center>
+		<h1 style="color:green;">
+			Rafael de Luca
+		</h1>
+
+		<h2>Desabilitar animação jquery</h2>
+
+		<button id="disable">
+			Desabilitar Animação
+		</button>
+
+		<button id="toggle">
+			Toggle Animação
+		</button>
+
+		<div class="box"></div>
+
+		<script>
+			$(document).ready(function () {
+				$("#disable").click(function () {
+					jQuery.fx.off = true;
+				});
+
+				$("#toggle").click(function () {
+					$("div").toggle("slow");
+				});
+			});
+		</script>
+	</center>
+</body>
+
+</html>

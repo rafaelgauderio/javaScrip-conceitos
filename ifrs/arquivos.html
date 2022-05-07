@@ -24,8 +24,8 @@
 		}
 
 		img {
-			margin:10px;
-			width:900px;		
+			margin: 10px;
+			width: 900px;
 
 		}
 	</style>
@@ -41,14 +41,14 @@
 	<ol>
 		<li>Web Storage APi: informações ficam apenas no CLIENT</li>
 		<li>JSON</li>
-		<li>API de arquivos</li>		
+		<li>API de arquivos</li>
 		<li>DATA URL´s</li>
 	</ol>
 	<h3>Lendo arquivo</h3>
-	<input type="file" onchange="funcaoMudar(this)" multiple>
+	<input type="file" id="arquivo" name="arquivo" onchange="funcaoMudar(this)" multiple>
 
 	<h3>Lendo Imagens</h3>
-	<input type="file" id="arquivoImagem" name="arquivoImagem" onchange="mudarArquivoImagem(this)">
+	<input type="file" id="arquivoImagem" name="arquivoImagem" onchange="mudarArquivoImagem(this)">	
 	<div id="resultado"></div>
 
 
@@ -66,11 +66,12 @@
 		localStorage.removeItem(nome);
 		localStorage.z = parseInt(localStorage.x) + parseInt(localStorage.y);
 
+
 		//apagando tudo
 		//localStorage.clear();
 
 		//nomes das variáveis armazenadas
-		document.write("<br>"+ localStorage.key(0) + "<br>");
+		document.write("<br>" + localStorage.key(0) + "<br>");
 		document.write(localStorage.key(1) + "<br>");
 		document.write(localStorage.key(2) + "<br>");
 		document.write(localStorage.key(3) + "<br>");
@@ -80,7 +81,7 @@
 		}
 
 
-		var objeto = {primeiroNome: "Rafael", sobrenome: "De Luca", datanasc: new Date('1995-12-17 0:00'),}
+		var objeto = { primeiroNome: "Rafael", sobrenome: "De Luca", datanasc: new Date('1995-12-17 0:00'), }
 		document.write(Object.values(objeto));
 
 		document.write("<br><br>Usando JSON<br>");
@@ -95,7 +96,7 @@
 		document.write("<br>" + pessoa.primeiroNome);
 		document.write("<br>" + pessoa.datanasc);
 
-		
+
 		function funcaoMudar(input) {
 			//contem os meta dados do arquivo
 			console.log(input.files[0]);
@@ -115,29 +116,53 @@
 		function mudarArquivoImagem(input) {
 			var arquivo = input.files[0];
 			var reader = new FileReader();
-			reader.onload=carregarArquivo;
-			reader.readAsDataURL(arquivo); // carrega qualquer tipo de arquivo
+			reader.onload = carregarArquivo;
+			reader.readAsDataURL(arquivo); // carrega qualquer tipo de Arquivo
+
+
+
 		}
 
 		function carregarArquivo(evento) {
-			if(evento.target.result.slice(5,10) === 'image') {
+			if (evento.target.result.slice(5, 10) === 'image') {
 				var imagem = document.createElement("img");
+				var quebra = document.createElement('br');
+
 				imagem.src = evento.target.result;
 				resultado.appendChild(imagem);
+				resultado.appendChild(quebra);
+
+				var imagemStorage = "Keyimagem";
+				localStorage[imagemStorage] = toBase64String(imagem);
+
 			} else {
 				var link = document.createElement('a'); //senão for uma imagem, cria um link pro arquivo
 				var quebra = document.createElement('br');
 				link.href = evento.target.result;
 				link.innerHTML = "Arquivo";
-				resultado.appendChild(link);
-				resultado.appendChild(quebra);	
 
+				resultado.appendChild(link);
+				resultado.appendChild(quebra);
+
+				var linkStorage = "Keylink";
+				localStorage[linkStorage] = link;
+				
 			}
+
+
 		}
 
+		function toBase64String(img) {
+			var canvas = document.createElement("canvas");
+			canvas.width = img.width;
+			canvas.height = img.height;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0);
+			var dataURL = canvas.toDataURL("image/png");
+			return dataURL;
+		}
 
-
-
+	
 	</script>
 
 </body>
