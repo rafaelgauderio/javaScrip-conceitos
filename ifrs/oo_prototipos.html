@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title>Orientação a Objetos com JavaScript por Protótipos</title>
+	<meta charset="utf-8">
+	
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			background-color: bisque;
+
+		}		
+
+		h2 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+		}
+		
+
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<h2>Orientação a Objetos em javaScript por Protótipos</h2>	
+
+	<script>
+	//criando objeto
+	var objeto = {a: 10, b:17};
+	document.write(Object.values(objeto), ", preço: ", objeto.a, ", idade: ",objeto.b);
+
+	//instanciando objetos depois de criar uma classe
+	//exemplo constroi uma casa modelo e depois criar casas a partir desse molde
+	var objeto2 = Object.create(objeto);
+	//objeto2 vai estar como vazio, mas mesmo assim tem como acessar parametros a e b, propriedade __proto__
+	document.write("<br>",Object.values(objeto2),"a=",objeto2.a, ", b=",objeto2.b);
+
+	//construtor
+	// senão tiver this é considerado um método privado
+	// não vai conseguir acesar o parâmetro c e o d
+	function MeuObjeto() {
+		this.a=15;
+		this.b=35;
+		var c = 90;
+		function d () {				
+		};
+		this.e = function() {
+			a + b;
+		};
+	}
+
+
+	var objeto3 = new MeuObjeto();
+	document.write("<br><br>Usando construtor para gerar o objeto<br>", objeto3.a, " ",objeto3.b);
+	document.write("<br><br>Acessando objetos públicos e privados<br>", Object.values(objeto3), " | ", objeto3.a, " |", objeto3.b, " | ", objeto3.c," | ",objeto3.d, " | ", objeto3.e);
+
+	let objeto4 = {f:12, g:"Rafael", h:true , i: function () { a - 2*b}};
+	MeuObjeto.prototype = objeto4;
+	var objeto5 = new MeuObjeto();
+
+	document.write("<br><br>Imprimindo prototype<br>",Object.values(objeto4));
+	document.write("<br><br>Imprimindo prototype<br>",Object.values(objeto5));
+	document.write("<br><br>Acessando cada parâmetro<br>",objeto5.a, "| ", objeto5.b,"| ", objeto5.c,"| ", objeto5.d,"| ", objeto5.f,"| ", objeto5.g,"| ", objeto5.h,"| ", objeto5.i);
+
+
+	document.write("<br><br>Toda instanciação também é uma herança em JavaScript.<br>");
+		
+
+	</script>
+
+</body>
+
+</html>
