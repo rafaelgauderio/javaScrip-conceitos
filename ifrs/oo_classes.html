@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Orientação a objetos - Classes com JavaScript</title>
+    <meta charset="utf-8">
+
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Arial";
+            font-size: 14px;
+            background-color: azure;
+
+        }
+
+        h2 {
+            font-size: 18px;
+            background-color: dodgerblue;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            margin: 5px;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <h2>Orientação a objetos - Classes com JavaScript</h2>
+
+    <script>
+        
+        class Veiculo {
+            #ano = 2006; //atributo privado 
+            #usado=false; 
+            cor = "preto";
+            constructor(valor) {
+                this.rodas = 4;
+                this.blindagem = true;
+                this.radio = 1;
+                this.preco = 500 + valor;                                            
+            }
+
+            //declarar métodos não precis da palavra function
+            metodo1() {
+                return this.rodas + this.radio;
+            }
+
+            //método privado não tem como acessar direto
+            #getAno () {
+                return this.#ano;
+            }
+            //posso chamar um atritubo ou método privado aqui dentro e depois chamar esse método
+            getAnoDoCarro() {
+                return this.#getAno();
+
+            }
+
+            set usado(value) {
+                this.#usado=value;
+            }
+
+            get usado () {
+                return this.#usado;
+            }
+        }
+
+        class Camionete extends Veiculo {
+
+            #farolDeMilha=1;
+            constructor (preco) {
+                //ao chamar o super, ele executa tudo que tem na classe pai na classe filho
+                super(preco);                
+                this.carroceria=true;
+            }
+
+            set farolDeMilha(value) {
+                this.#farolDeMilha=value;
+            }
+
+            get farolDeMilha () {
+                return this.#farolDeMilha;
+            }
+
+        }
+
+        let valor =0;
+        var objeto1 = new Veiculo(valor);
+        var objeto2 = new Veiculo(900);
+
+
+        document.write("<br><br>", Object.values(objeto1));
+        document.write("<br><br>Rodas: ", objeto1.rodas, ", cor: ", objeto1.cor, ", Método: ", objeto1.metodo1(), ", preco R$: ", objeto1.preco);
+        document.write("<br><br>Objeto2<br>Rodas: ", objeto2.rodas, ", cor: ", objeto2.cor, ", Método: ", objeto2.metodo1(), ", preco R$: ", objeto2.preco);
+        document.write("<br>Ano do veículo: ", objeto2.getAnoDoCarro());
+        //setando um valor para um atributo privado
+        objeto2.usado=true;
+        document.write("<br><br>Carro é usado? ", objeto2.usado);
+
+
+        var objeto3 = new Camionete(25000);
+        document.write("<br><br>Parametros da camionete: ", Object.values(objeto3));
+        objeto3.farolDeMilha=2;
+        document.write("<br>Camionete possui quantos farois de milha: ", objeto3.farolDeMilha);
+
+    </script>
+
+</body>
+
+</html>
