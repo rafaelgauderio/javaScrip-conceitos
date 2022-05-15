@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Herança por delegação e concatenação com JavaScript por Protótipos</title>
+    <meta charset="utf-8">
+
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Arial";
+            font-size: 14px;
+            background-color: bisque;
+
+        }
+
+        h2 {
+            font-size: 18px;
+            background-color: #48d1cc;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            margin: 5px;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <h2>Herança por delegação com JavaScript por Protótipo</h2>
+
+    <script>
+
+        document.write("<br><br>Toda instanciação também é uma herança em JavaScript.<br>");
+        var objeto1 = {
+            a: 17,
+            b: 12
+        };
+
+        var objeto2 = Object.create(objeto1); //objeto2 criado o objeto1 como protótipo
+
+        var objeto3 = {
+            c: 25,
+            d: 45
+        };
+        //setor o objeto2 para ser o protótipo do 3
+        Object.setPrototypeOf(objeto3, objeto2);
+        Object.setPrototypeOf(objeto2, objeto1);
+
+        document.write("<br>Imprimindo Objeto1 <br>", Object.values(objeto1));
+        document.write("<br>Imprimindo Objeto2 <br>", Object.values(objeto2));
+        document.write("<br>Imprimindo Objeto3 <br>", Object.values(objeto3));
+
+        document.write("<br><br>Acessando cada parâmetro (atributos do próprio objeto e do protótipo)<br>", objeto3.a, "| ", objeto3.b, "| ", objeto3.c, "| ", objeto3.d);
+
+    </script>
+
+    <h2>Herança por concatenação com JavaScript por Protótipo</h2>
+
+    <script>
+
+        function MeuObjeto1() {
+        this.a = "propriedade a";
+        this.b = "propriedade b";
+        }
+
+        //funções construtora (não é um objeto instanciado)
+        function MeuObjeto2() {
+        MeuObjeto1.call(this);
+        this.c=17;
+        this.d=12;
+        }
+
+        var objeto2 = new MeuObjeto2();
+        
+        document.write("<br>Imprimindo objeto2 <br>", Object.values(objeto2));
+        document.write("<br><br>Acessando cada parâmetro do objeto2<br>", objeto2.a, " | ", objeto2.b, " | ", objeto2.c, " | ", objeto2.d,)
+
+        function MeuObjeto3() {
+        this.a = 82;
+        this.b = 96;
+        var e = "atributo privado";
+        }
+        MeuObjeto3.prototype = new MeuObjeto3;
+        function MeuObjeto4() {       
+        this.c=17;
+        this.d=12;
+        }
+        Object.setPrototypeOf(MeuObjeto4.prototype, MeuObjeto3.prototype);
+        var objeto4 = new MeuObjeto4();            
+
+        document.write("<br><br>Imprimindo objeto4 <br>", Object.values(objeto4));
+        document.write("<br><br>Acessando cada parâmetro do objeto4<br>", objeto4.a, " | ", objeto4.b, " | ", objeto4.c, " | ", objeto4.d, " | ", objeto4.e)
+        
+        var objeto5 = {a: 66, b:true};
+        MeuObjeto3.prototype = objeto5;
+        Object.setPrototypeOf(MeuObjeto4.prototype, MeuObjeto3.prototype);
+
+        document.write("<br><br>Imprimindo objeto4 <br>", Object.values(objeto4));
+        document.write("<br><br>Acessando cada parâmetro do objeto4<br>", objeto4.a, " | ", objeto4.b, " | ", objeto4.c, " | ", objeto4.d, " | ", objeto4.e);
+        
+
+        var obj0 = {a:45, b:"Rafael"};
+        function MeuObj1() { };
+        var obj1 = {c:99, d:"De Luca"};
+        function MeuObj2() { };
+        MeuObj1.prototype=obj0;
+        MeuObj2.prototype=obj1;
+        Object.setPrototypeOf(obj1,obj0);
+
+        //criando mais funcoes e atributos para o obj1 herdar
+        obj0.e=666;
+        obj0.f = function () {
+            console.log("Função em tempo de execução");
+        }
+        
+        console.log(obj1.a,obj1.b,obj1.c,obj1.d);
+        obj1.f(); //chamando a funcao f em tempo de execução
+
+        document.write("<br><br>Imprimindo obj1 <br>", Object.values(obj1));
+        //parentes para chamar a funcao
+        document.write("<br><br>Acessando cada parâmetro do obj1 (hernando obj0)<br>", obj1.a, " | ", obj1.b, " | ", obj1.c, " | ", obj1.d, " | ",obj1.f);
+        
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
