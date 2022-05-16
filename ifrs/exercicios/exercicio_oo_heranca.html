@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Exercicio orientacao a Objetos com JavaScript com classes</title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: Arial;
+		}
+
+		label {
+			display: inline-block;
+			width: 150px;
+			margin: 2px;
+		}
+
+		fieldset {
+			display: inline-block;
+		}
+
+		th {
+			background-color: black;
+			color: white;
+		}
+
+		#datanasc,
+		#dataadmissao {
+			width: 10em;
+		}
+
+		td {
+			text-align: center;
+			color: green;
+		}
+
+		td:last-child {
+			text-align: center;
+			color: red;
+			cursor: pointer;
+		}
+	</style>
+
+
+</head>
+
+
+
+<body>
+	<form>
+		<fieldset>
+			<legend>Cadastro de Funcionário</legend>
+			<label for="nome">Nome:</label> <input type="text" id="nome"><br>
+			<label for="datanasc">Data de Nascimento:</label> <input type="text" id="datanasc"
+				placeholder="dd/mm/aaaa"><br>
+			<label for="dataadmissao">Data de Admissão:</label> <input type="text" placeholder="dd/mm/aaaa"
+				id="dataadmissao"><br>
+			<input type="button" onclick="return capturar()" id="btcadastrar" onclick="imprimir()" value="Cadastrar">
+		</fieldset>
+	</form>
+	<table id="funcionarios">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Data de Nascimento</th>
+				<th>Data de Admissão</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="nomeInformado"></td>
+				<td id="dataNascInformada"></td>
+				<td id="dataAdmissaoInformada"></td>
+				<td onclick="limpar()">excluir</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script>
+		/*
+		const botao = document.querySelector("#btcadastrar");
+
+		botao.addEventListener("click", function(evento) {
+
+			evento.preventDefault();
+
+			const name = document.querySelector("#nome");
+			const nome = name.value;
+
+			const dataNascimento = document.querySelector("#datanasc");
+			const nascimento = datanasc.value;
+
+			const dataAdmissao = document.querySelector("#dataadmissao");
+			const admissao = dataAdmissao.value;			
+
+		});
+		*/
+
+		
+		class Pessoa {
+			#nome = "";
+			#dataNascimento;
+
+			constructor() {
+
+			}
+
+			set nome(value) {
+				this.#nome = value;
+			}
+
+			get nome() {
+				return this.#nome;
+			}
+
+			set dataNascimento(value) {
+				this.#dataNascimento = value;
+			}
+
+			get dataNascimento() {
+				return this.#dataNascimento;
+			}		
+
+			idade() {
+				var idade=35;
+				return idade;
+			}
+
+		}
+
+		class Funcionario extends Pessoa {
+			#dataAdmissao;
+
+			constructor() {
+				super();
+			}
+
+			set dataAdmissao(value) {
+				this.#dataAdmissao = value;
+			}
+
+			get dataAdmissao() {
+				return this.#dataAdmissao;
+			}
+
+			tempoServico() {
+				var tempo = 25
+				return tempo;
+
+			}
+		}
+
+		var nomeX = "";
+		var dataNascimentoX = "";
+		var dataAdmissaoX = "";
+
+		function capturar() {
+
+			nome = document.getElementById('nome').value;
+			document.getElementById('nomeInformado').innerHTML = nome;
+
+			dataNascimento = document.getElementById('datanasc').value;
+			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
+
+			dataAdmissao = document.getElementById('dataadmissao').value;
+			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
+
+			return true;
+
+		}
+
+		function limpar() {
+
+			var nome = null;
+			document.getElementById('nomeInformado').innerHTML = nomeX;
+			var dataNascimento = null;
+			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
+			var dataAdmissao = null;
+			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
+		}
+
+		var funcionario1 = new Funcionario();
+
+		funcionario1.nome = "Rafael de Luca";
+		funcionario1.dataNascimento = "17/12/1995";
+		funcionario1.dataAdmissao = "25/01/2008";
+
+		console.log(funcionario1.nome, funcionario1.dataNascimento, funcionario1.dataAdmissao,funcionario1.idade(), funcionario1.tempoServico());
+		
+
+
+	</script>
+
+
+
+
+
+</body>
+
+</html>
