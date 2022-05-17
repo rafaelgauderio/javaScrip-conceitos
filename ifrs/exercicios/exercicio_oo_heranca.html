@@ -4,7 +4,7 @@
 
 <head>
 	<title> Exercicio orientacao a Objetos com JavaScript com classes</title>
-	<meta charset="utf-8">
+	<meta charset="utf-8">	
 
 	<style>
 		body {
@@ -33,7 +33,7 @@
 
 		td {
 			text-align: center;
-			color: green;
+			
 		}
 
 		td:last-child {
@@ -49,7 +49,7 @@
 
 
 <body>
-	<form>
+	<form name="formulario" id="formulario">
 		<fieldset>
 			<legend>Cadastro de Funcionário</legend>
 			<label for="nome">Nome:</label> <input type="text" id="nome"><br>
@@ -78,28 +78,15 @@
 			</tr>
 		</tbody>
 	</table>
+	<br>	
+	<p id="valores1"></p>
+	<p id="valores2"></p>
+	<p id="valores3"></p>
+	<p id="valores4"></p>
+	
+	<script>		
 
-	<script>
-		/*
-		const botao = document.querySelector("#btcadastrar");
 
-		botao.addEventListener("click", function(evento) {
-
-			evento.preventDefault();
-
-			const name = document.querySelector("#nome");
-			const nome = name.value;
-
-			const dataNascimento = document.querySelector("#datanasc");
-			const nascimento = datanasc.value;
-
-			const dataAdmissao = document.querySelector("#dataadmissao");
-			const admissao = dataAdmissao.value;			
-
-		});
-		*/
-
-		
 		class Pessoa {
 			#nome = "";
 			#dataNascimento;
@@ -122,11 +109,45 @@
 
 			get dataNascimento() {
 				return this.#dataNascimento;
-			}		
+			}
 
-			idade() {
-				var idade=35;
-				return idade;
+			idade(dataNascimento) {
+				
+				var agora = new Date();
+				var hoje = new Date(agora.getYear(), agora.getMonth, agora.getDate());
+
+				var anoAgora = agora.getYear();
+				var mesAgora = agora.getMonth();
+				var diaAgora = agora.getDate();
+				
+			
+				var dataNascimento = new Date(dataNascimento.substr(6,4),dataNascimento.substr(3,2)-1,dataNascimento.substr(0,2));				
+				var anoNascimento = dataNascimento.getYear();
+				var mesNascimento = dataNascimento.getMonth();
+				var diaNascimento = dataNascimento.getDate();
+
+				var anoIdade = anoAgora - anoNascimento;
+				//console.log(anoIdade);
+
+				if(mesAgora >= mesNascimento) {
+					var mesIdade = mesAgora - mesNascimento;
+				} else {
+					anoIdade = anoIdade -1;
+					var mesIdade = (mesAgora - mesNascimento) +12;
+				}
+				if(diaAgora >= diaNascimento) {
+					var diaIdade = diaAgora - diaNascimento;
+				} else {
+					mesIdade = mesIdade -1;
+					diaIdade = (diaAgora - diaNascimento) + 31;
+					if (mesIdade <0) {
+						mesIdade = 11;
+						anoIdade = anoIdade-1;
+					}
+					
+				}
+				//console.log(anoIdade);
+				return anoIdade;				
 			}
 
 		}
@@ -157,6 +178,8 @@
 		var dataNascimentoX = "";
 		var dataAdmissaoX = "";
 
+		var funcionario1 = new Funcionario();
+
 		function capturar() {
 
 			nome = document.getElementById('nome').value;
@@ -167,6 +190,24 @@
 
 			dataAdmissao = document.getElementById('dataadmissao').value;
 			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
+
+			funcionario1.nome = document.forms["formulario"].elements[1].value;			
+			funcionario1.dataNascimento = document.forms["formulario"].elements[2].value;
+			funcionario1.dataAdmissao = document.forms["formulario"].elements[3].value;
+
+			document.getElementById("valores1").innerHTML = "nome: " + funcionario1.nome;
+			document.getElementById("valores2").innerHTML = "Data de Nascimento: " + funcionario1.dataNascimento;
+			document.getElementById("valores3").innerHTML = "Data de Admissão: " + funcionario1.dataAdmissao;
+			
+			var dia = dataNascimento.substr(0,2);
+			var mes = dataNascimento.substr(3,2);
+			var ano = dataNascimento.substr(6,4);
+			//var dataNascimentoFormatada = new Date(ano,mes-1,dia);
+			console.log(dia);
+			console.log(mes);
+			console.log(ano);
+			document.getElementById("valores4").innerHTML = "Idade: " + funcionario1.idade(dataNascimento);
+		
 
 			return true;
 
@@ -180,16 +221,25 @@
 			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
 			var dataAdmissao = null;
 			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
+			document.getElementById("valores1").innerHTML = null;
+			document.getElementById("valores2").innerHTML = null;
+			document.getElementById("valores3").innerHTML = null;
+			document.getElementById("valores4").innerHTML = null;
+			
+				
 		}
 
-		var funcionario1 = new Funcionario();
-
-		funcionario1.nome = "Rafael de Luca";
-		funcionario1.dataNascimento = "17/12/1995";
-		funcionario1.dataAdmissao = "25/01/2008";
-
-		console.log(funcionario1.nome, funcionario1.dataNascimento, funcionario1.dataAdmissao,funcionario1.idade(), funcionario1.tempoServico());
 		
+
+
+
+
+
+
+
+
+
+
 
 
 	</script>

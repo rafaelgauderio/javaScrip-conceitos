@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+
+	
+	<title> Exerício JavaScript </title>	
+
+</head>
+
+<body>
+
+	<script>
+	array = [];
+	do {
+		var nome = prompt("Digite seu nome: ");
+		var idade = prompt("Digite sua idade: ");
+		var objeto = {Nome:nome, Idade:idade};
+		for (var [key,value] of Object.entries(objeto)){
+			array.push(key + ' - ' + value);	
+		}
+		
+	} while(confirm("OK ou CANCELAR:"));	
+
+
+	var string = array.join("\n");	
+	window.alert(string);
+	
+	
+	</script>
+	
+
+
+</body>
+</html>
+
