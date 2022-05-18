@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	
+	<title> Exerício Datas JavaScript </title>
+	<style>
+	
+	html {
+
+		background:#b7e8ed;
+		margin-left: 20px;
+		margin-right: 20px;
+		padding: 20px;
+		border: 2px solid black;
+		border-radius: 5px;
+		height: 100%;
+	}
+
+	title, body {
+		font-family: monospace;
+	}	
+
+	h2 {
+		
+		font-family: arial;
+
+	}	
+	
+
+
+	</style>
+
+</head>
+
+<body>
+
+	<h2> Datas com JavaScript JavaScript </h2>
+
+	
+	<script> 
+	
+    var data = new Date();
+    var dia = data.getDay();
+    var diaMes = data.getDate();
+    var mes = data.getMonth();
+    var ano = data.getFullYear();
+
+    var horas = data.getHours();
+    var minutos = data.getMinutes();
+    var segundos = data.getSeconds();
+    var mili = data.getMilliseconds();
+    var time = data.getTime();
+    var zone = data.getTimezoneOffset();
+    var utc = data.getUTCDate();
+
+    var meses = new Array("Janeiro", "Fevereiro", "Março");
+
+    document.write(data  + "<br>");
+    document.write("dia da semana (começa no domingo): " + dia + "<br>");
+    document.write("dia do mês: " + diaMes + "<br>");
+    document.write("mês:" + mes + "<br>");
+    document.write("ano:" + ano + "<br>");
+    document.write("horas:" + horas + "<br>");
+    document.write("minutos:" + minutos + "<br>");
+    document.write("segundos:" + segundos + "<br>"); 
+    document.write("milisegunods:" + mili + "<br>");
+    document.write("time:" + time + "<br>");
+    document.write("zone:" + zone + "<br>");
+    document.write("UTC:" + utc + "<br>");
+    
+    document.write("<br>Meses do ano<br>")
+    for (i=0 ; i<meses.length; i++) {
+        document.write(meses[i]+"<br>");
+    }	
+
+
+    var newDate = new Date();
+    newDate.setDate(data.getDate()+10);
+    document.write("Dia da nova data (+10 dias): " + newDate.getDate() + "<br>");
+
+    var hoje = new Date();
+    var daqui5anos = new Date();
+    daqui5anos.setFullYear(hoje.getFullYear()+5) ;
+    document.write("Somando 5 anos: " + daqui5anos +"<br>");
+
+    var dataSetada = new Date(1995,11,24,23,59,59); //ano, mes,dia,hora,min,seg,mili
+    //array mês começa em zero, então dezembro é mes 11.
+    document.write("Meia noite de natal: " + dataSetada);    
+
+	
+	</script>
+	
+
+
+</body>
+</html>
+
