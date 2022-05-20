@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title> AJAX com JQuery </title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Arial";
+            font-size: 14px;
+            background-color: aquamarine;
+
+        }
+
+        h2 {
+            font-size: 18px;
+            background-color: #48d1cc;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        h4 {
+
+            font-size: 16px;
+            background-color: burlywood;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        input[type=button] {
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 10px;
+            border:solid 2px;
+            padding: 5px;
+        }
+
+        input {
+            border-radius: 10px; 
+            height: 40px;
+            font-size: 16px;
+            text-align: center;
+
+        }
+
+        #resultadoMYSQL {
+            border:double 2px black;
+            padding: 10px;  
+            border-radius: 10px;
+            font-size: 20px;  
+            max-width: 300px;    
+        }
+        div {
+            border:double 2px darkgray;
+            padding:5px;  
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+    <h2>AJAX com jQuery em javaScript (Asynchronous JavaScript and XML)</h2>
+    <h4>AJAX é uma comunicação do cliente com o Servidor</h4>
+
+    <div id="resultado"></div>    
+    <input type="button" onclick="carrega()" value="Carregar">
+   
+    <div id="resultadoGet"></div>
+    <input type="button" onclick="carregaGet()" value="CarregarGet">
+
+    <div id="resultadoPost"></div>
+    <input type="button" onclick="carregaPost()" value="CarregarPost">
+
+    <div id="resultadoJSON"></div>
+    <input type="button" onclick="carregaJSON()" value="CarregarJSON">
+    
+    <br>
+    <input id="busca">
+    <input type="button" onclick="carregaMYSQL()" value="CarregaMYSQL">
+    <div id="resultadoMYSQL"></div>
+
+    
+
+    <script>
+        function carrega () {
+            //função load server para carregar uma página e jogar dentro de um elemento html.
+            
+            $('#resultado').load('ajax.php',{x: 17}, function () {
+                alert ("Chamar alert na tela") });
+        };
+
+        function carregaGet () {            
+            
+            $.get('ajaxGet.php',{y: 45}, function (data) {                
+                $("#resultadoGet").html(data)});
+        };
+
+        function carregaPost () {            
+            
+            $.post('ajaxPost.php',{y: 25}, function (data) {                
+                $("#resultadoPost").html(data)});
+        };
+
+        function carregaJSON () {            
+            
+            $.getJSON('ajaxJSON.php', mostrarJSON)};
+                
+        
+
+        function carregaMYSQL () {
+            var input = document.querySelector("#busca").value;
+            if (input==null) {
+                $("#resultadoMYSQL").load('vazio.php');
+            }    else {
+                $.getJSON('ajaxMYSQL.php',{busca: $("#busca").val()}, imprimir)};
+            }  
+            
+       
+
+        function imprimir (dados) {
+            $("#resultadoMYSQL").empty();
+            for (i in dados) {
+                var pessoa = document.createElement('div');
+                pessoa.innerHTML += "Nome: " + dados[i].nome + "<br>";
+                pessoa.innerHTML += "Idade: " + dados[i].idade + "<br>";               
+                $("#resultadoMYSQL").append(pessoa);
+                
+            }          
+
+
+
+        }
+
+        function mostrarJSON(dados) {
+            $("#resultadoJSON").empty();
+            var pessoa = document.createElement('div');
+            pessoa.innerHTML += "Nome: " +dados.nome +"<br>";
+            pessoa.innerHTML += "Idade: " + dados.idade + "<br>";
+            pessoa.innerHTML += "Cidade: " + dados.cidade + "<br>";  
+            $("#resultadoJSON").append(pessoa);
+
+        }
+
+    </script>
+
+
+    
+
+</body>
+
+</html>
