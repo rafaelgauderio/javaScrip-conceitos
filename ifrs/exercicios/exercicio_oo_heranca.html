@@ -4,7 +4,7 @@
 
 <head>
 	<title> Exercicio orientacao a Objetos com JavaScript com classes</title>
-	<meta charset="utf-8">	
+	<meta charset="utf-8">
 
 	<style>
 		body {
@@ -33,7 +33,7 @@
 
 		td {
 			text-align: center;
-			
+
 		}
 
 		td:last-child {
@@ -57,7 +57,7 @@
 				placeholder="dd/mm/aaaa"><br>
 			<label for="dataadmissao">Data de Admissão:</label> <input type="text" placeholder="dd/mm/aaaa"
 				id="dataadmissao"><br>
-			<input type="button" onclick="return capturar()" id="btcadastrar" onclick="imprimir()" value="Cadastrar">
+			<input type="button" onclick="return capturar()" id="btcadastrar" value="Cadastrar">
 		</fieldset>
 	</form>
 	<table id="funcionarios">
@@ -78,13 +78,14 @@
 			</tr>
 		</tbody>
 	</table>
-	<br>	
-	<p id="valores1"></p>
-	<p id="valores2"></p>
-	<p id="valores3"></p>
-	<p id="valores4"></p>
-	
-	<script>		
+	<br>
+	<p id="nome1"></p>
+	<p id="dataNasc1"></p>
+	<p id="dataAdmis1"></p>
+	<p id="idade"></p>
+	<p id="tempo"></p>
+
+	<script>
 
 
 		class Pessoa {
@@ -112,16 +113,16 @@
 			}
 
 			idade(dataNascimento) {
-				
+
 				var agora = new Date();
 				var hoje = new Date(agora.getYear(), agora.getMonth, agora.getDate());
 
 				var anoAgora = agora.getYear();
 				var mesAgora = agora.getMonth();
 				var diaAgora = agora.getDate();
-				
-			
-				var dataNascimento = new Date(dataNascimento.substr(6,4),dataNascimento.substr(3,2)-1,dataNascimento.substr(0,2));				
+
+
+				var dataNascimento = new Date(dataNascimento.substr(6, 4), dataNascimento.substr(3, 2) - 1, dataNascimento.substr(0, 2));
 				var anoNascimento = dataNascimento.getYear();
 				var mesNascimento = dataNascimento.getMonth();
 				var diaNascimento = dataNascimento.getDate();
@@ -129,30 +130,31 @@
 				var anoIdade = anoAgora - anoNascimento;
 				//console.log(anoIdade);
 
-				if(mesAgora >= mesNascimento) {
+				if (mesAgora >= mesNascimento) {
 					var mesIdade = mesAgora - mesNascimento;
 				} else {
-					anoIdade = anoIdade -1;
-					var mesIdade = (mesAgora - mesNascimento) +12;
+					anoIdade = anoIdade - 1;
+					var mesIdade = (mesAgora - mesNascimento) + 12;
 				}
-				if(diaAgora >= diaNascimento) {
+				if (diaAgora >= diaNascimento) {
 					var diaIdade = diaAgora - diaNascimento;
 				} else {
-					mesIdade = mesIdade -1;
+					mesIdade = mesIdade - 1;
 					diaIdade = (diaAgora - diaNascimento) + 31;
-					if (mesIdade <0) {
+					if (mesIdade < 0) {
 						mesIdade = 11;
-						anoIdade = anoIdade-1;
+						anoIdade = anoIdade - 1;
 					}
-					
+
 				}
 				//console.log(anoIdade);
-				return anoIdade;				
+				return anoIdade;
 			}
 
 		}
 
 		class Funcionario extends Pessoa {
+
 			#dataAdmissao;
 
 			constructor() {
@@ -167,16 +169,22 @@
 				return this.#dataAdmissao;
 			}
 
-			tempoServico() {
-				var tempo = 25
-				return tempo;
+			tempoServico(dataAdmissao) {
+				var hoje = new Date();				
+				var dataAdmin = new Date(dataAdmissao.substr(6, 4), dataAdmissao.substr(3, 2) - 1, dataAdmissao.substr(0, 2));
+				var diferenca = hoje.getTime() - dataAdmin.getTime();
+				if (diferenca < 0) {
+					return "A data de admissão não pode ser futura a data atual!";
+				} else {
+					var dias = diferenca / (1000 * 60 * 60 * 24);
+					var meses = diferenca / (1000 * 60 * 60 * 24 * 30);
+					var anos = diferenca / (1000 * 60 * 60 * 24 * 30 * 12);
+					return Math.trunc(dias) + " dias, ou " + (meses).toFixed(2) + " meses, ou " + (anos).toFixed(2) + " ano(s).";
+				}
+
 
 			}
 		}
-
-		var nomeX = "";
-		var dataNascimentoX = "";
-		var dataAdmissaoX = "";
 
 		var funcionario1 = new Funcionario();
 
@@ -191,23 +199,16 @@
 			dataAdmissao = document.getElementById('dataadmissao').value;
 			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
 
-			funcionario1.nome = document.forms["formulario"].elements[1].value;			
+			funcionario1.nome = document.forms["formulario"].elements[1].value;
 			funcionario1.dataNascimento = document.forms["formulario"].elements[2].value;
 			funcionario1.dataAdmissao = document.forms["formulario"].elements[3].value;
 
-			document.getElementById("valores1").innerHTML = "nome: " + funcionario1.nome;
-			document.getElementById("valores2").innerHTML = "Data de Nascimento: " + funcionario1.dataNascimento;
-			document.getElementById("valores3").innerHTML = "Data de Admissão: " + funcionario1.dataAdmissao;
-			
-			var dia = dataNascimento.substr(0,2);
-			var mes = dataNascimento.substr(3,2);
-			var ano = dataNascimento.substr(6,4);
-			//var dataNascimentoFormatada = new Date(ano,mes-1,dia);
-			console.log(dia);
-			console.log(mes);
-			console.log(ano);
-			document.getElementById("valores4").innerHTML = "Idade: " + funcionario1.idade(dataNascimento);
-		
+			document.getElementById("nome1").innerHTML = "<b>Nome: </b>" + funcionario1.nome;
+			document.getElementById("dataAdmis1").innerHTML = "<b>Data de Nascimento: </b>" + funcionario1.dataNascimento;
+			document.getElementById("dataNasc1").innerHTML = "<b>Data de Admissão: </b>" + funcionario1.dataAdmissao;
+
+			document.getElementById("idade").innerHTML = "<b>Idade:</b> " + funcionario1.idade(dataNascimento) + " anos";
+			document.getElementById("tempo").innerHTML = "<b>Tempo de serviço:</b> " + funcionario1.tempoServico(dataAdmissao);
 
 			return true;
 
@@ -216,29 +217,18 @@
 		function limpar() {
 
 			var nome = null;
-			document.getElementById('nomeInformado').innerHTML = nomeX;
+			document.getElementById('nomeInformado').innerHTML = nome;
 			var dataNascimento = null;
 			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
 			var dataAdmissao = null;
 			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
-			document.getElementById("valores1").innerHTML = null;
-			document.getElementById("valores2").innerHTML = null;
-			document.getElementById("valores3").innerHTML = null;
-			document.getElementById("valores4").innerHTML = null;
-			
-				
+			document.getElementById("nome1").innerHTML = null;
+			document.getElementById("dataNasc1").innerHTML = null;
+			document.getElementById("dataAdmis1").innerHTML = null;
+			document.getElementById("idade").innerHTML = null;
+			document.getElementById("tempo").innerHTML = null;
+
 		}
-
-		
-
-
-
-
-
-
-
-
-
 
 
 
