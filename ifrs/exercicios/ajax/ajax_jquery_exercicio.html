@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title> AJAX com JQuery </title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Arial";
+            font-size: 14px;
+            background-color: aquamarine;
+
+        }
+
+        h2 {
+            font-size: 18px;
+            background-color: #48d1cc;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        h4 {
+
+            font-size: 16px;
+            background-color: burlywood;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        input[type=button] {
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 10px;
+            border:solid 2px;
+            padding: 5px;
+        }
+
+        input {
+            border-radius: 10px; 
+            height: 40px;
+            font-size: 16px;
+            text-align: center;
+
+        }
+
+        #resultadoMYSQL {
+            border:double 2px black;
+            padding: 10px;  
+            border-radius: 10px;
+            font-size: 20px;  
+            max-width: 300px;    
+        }
+        div {
+            border:double 2px darkgray;
+            padding:5px;  
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+    <h2>Exercicio Ajax</h2>  
+      
+    <p>Método get</p>
+   <input type="text" onkeyup="carregaGet(this.value)" value="">
+   <div id="resultadoGet"></div>
+
+    
+    <p>Método Post</p>
+    <input type="text" onkeyup="carregaPost(this.value)" value="">
+    <div id="resultadoPost"></div>
+    
+    <br>
+    <p>Usando Banco de dados</p>   
+    <input id="busca">
+    <input type="button" onclick="carregaMYSQL()" value="CarregaMYSQL">
+    <div id="resultadoMYSQL"></div>   
+ 
+     
+    
+
+    <script>
+       
+
+        function carregaGet (valor) {            
+            
+         $.get('ajaxGet.php',{user:valor}, function (data) {
+                if(data=='1')  {
+                   $("#resultadoGet").html('Este usuário já está utilizado, escolha outro.');                 
+                } else {
+                    $("#resultadoGet").html('Nome de usuário OK');
+                }                 
+                    
+                });
+        };
+
+        function carregaPost (valor) {            
+           $.post('ajaxPost.php',{user:valor}, function (data) {
+                if(data=='1')  {
+                   $("#resultadoPost").html('Este usuário já está utilizado, escolha outro.');                 
+                } else {
+                    $("#resultadoPost").html('Nome de usuário OK');
+                }                 
+                    
+           });            
+        }; 
+
+           function carregaMYSQL () {
+            var input = document.querySelector("#busca").value;
+            if (input=="") {
+                $("#resultadoMYSQL").html('Nenhum nome informado para busca');
+            }    else {
+                $.getJSON('ajaxMYSQL.php',{busca: $("#busca").val()}, imprimir)};
+            }  
+            
+       
+
+        function imprimir (dados) {
+            $("#resultadoMYSQL").empty();
+            for (i in dados) {
+                var usuario = document.createElement('div');
+                usuario.innerHTML += "Nome: " + dados[i].nome + "<br>";
+                usuario.innerHTML += "Idade: " + dados[i].idade + "<br>";               
+                $("#resultadoMYSQL").append(usuario);
+                
+            }          
+
+
+
+        }    
+
+
+
+      
+
+    </script>
+
+
+    
+
+</body>
+
+</html>
