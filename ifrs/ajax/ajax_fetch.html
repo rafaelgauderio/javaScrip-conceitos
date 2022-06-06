@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title> AJAX com tetch </title>
+    <meta charset="utf-8">
+    
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Arial";
+            font-size: 14px;
+            background-color: aquamarine;
+
+        }
+
+        h2 {
+            font-size: 18px;
+            background-color: #48d1cc;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        h4 {
+
+            font-size: 16px;
+            background-color: burlywood;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid black;
+            background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+            text-align: center;
+        }
+
+        input[type=button] {
+            font-size: 14px;
+            margin: 10px;
+            border-radius: 10px;
+            border: solid 2px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        input[type=button]:hover {
+            animation: zoom 1s linear forwards;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        
+        @keyframes zoom {
+            0% {
+                transform: scale(1.0);
+            }
+
+            100% {
+                transform: scale(1.2);
+                background-color: greenyellow;
+                border: solid 1px;
+            }
+        }
+
+
+
+        input {
+            border-radius: 10px;
+            height: 40px;
+            font-size: 16px;
+            text-align: center;
+
+        }
+
+        #resultadoMYSQL {
+            border: double 2px black;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            max-width: 300px;
+        }
+
+        div {
+            border: double 2px darkgray;
+            padding: 5px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+    <h2>AJAX com Fetch em javaScript forma ASSÍNCRONA </h2>
+    <h4>Fetch é nativo do JavaScript.</h4>
+    <h4>AJAX é uma comunicação do cliente com o Servidor para alterar os dados sem precisar recarregar a página.</h4>
+    <br>
+    <input id="busca">
+    <input type="button" onclick="carregaMYSQL()" value="CarregaMYSQL">
+    <div id="resultadoMYSQL"></div>
+    <script>
+
+        /*
+        fetch retorna um Promisse (encapsula uma chamada que ainda não foi completada)
+        then - faz o callback. Não espera uma chamada, espera uma referência a uma função
+        */
+        function carregaMYSQL() {
+            fetch('ajaxMYSQL.php?busca=' + document.getElementById('busca').value).then(dados => imprimi(dados));
+        }
+
+        function imprimi(dados) {
+            var resultado = document.getElementById("resultadoMYSQL");
+            resultado.innerHTML = "";
+            //dados retorna uma promisse e .json() converte para json
+            dados.json().then(preenche);            
+
+            }
+        
+        function preenche(dados) {
+            //os dados aqui já estão convertidos em objeto. São o retorno do método json
+            var resultado = document.getElementById("resultadoMYSQL");
+            for (i in dados) {               
+                var pessoa = document.createElement('div');
+                pessoa.innerHTML += "Nome: " + dados[i].nome + "<br>";
+                pessoa.innerHTML += "Idade: " + dados[i].idade + "<br>";
+                resultado.append(pessoa);
+        }
+    }
+
+    </script>
+</body>
+</html>
