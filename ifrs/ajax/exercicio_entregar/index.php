@@ -11,6 +11,14 @@
 	?>
 
 	<style>
+
+		.flex-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+
 		select {
 			font-size: 16px;
 			margin: 5px;
@@ -31,12 +39,13 @@
 			padding: 10px;
 			border: 2px solid black;
 			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
-			text-align: center;
+			text-align: center;		
+
 		}
 
 		
 
-		input[type=button] {
+		input[type=button], input[type=submit] {
 			font-size: 14px;
 			margin: 5px;
 			border-radius: 10px;
@@ -45,31 +54,34 @@
 		}
 		
 
-		input[type=password], input[type=text] {
+		input[type=text]  {
+			border-radius: 10px; 
+			height: 25px;
+			font-size: 14px;
+			text-align: center;
+			font-weight: bolder;						
+
+		}
+
+		#resultadoGet {
 			border-radius: 10px; 
 			height: 25px;
 			font-size: 14px;
 			text-align: center;
 			font-weight: bolder;
-
+			border: 1px solid black;
+			margin: 5px;
+			padding: 5px;
+			color: red;
+			
 		}
+
 		label {
 			font-size: 14px;			
 			padding: 5px;
-
-
 			
-		}
-		
-		div {
-			border:double 1px darkgray;
-			padding:5px;  
-			border-radius: 10px;
-			max-width: 300px;                       
-			margin: 10px;
-
-		}
-
+		}	
+	
 		img {
 			border: none;
 			height: 100px;
@@ -103,23 +115,31 @@
 			border: 2px solid black;
 		}
 
+		#formulario {
+			display: block;
+		}
+
+		
 
 	</style>
 </head>
 
 <body>
-	
-	
-	<h2>Exercício Ajax com mysql, php e jquery</h2>
+
+		
+	<div class="flex-container">	
+	<h2>Tela de Cadastro com Ajax, mysql, php e jquery</h2>
+	</div>
+	<div class="flex-container">
 	<form id="formulario">
 		<fieldset>
 			<label>Login: <input type="text" onkeyup="carregaGet(this.value)" value="Digitar nome do usuário"></label>
 			<text>Foto:</text>
 			<div id="imagem">			
 			</div>
-			<label id="senha">Senha:<input type="password"><label>
+			
 				<div id="resultadoGet"></div> 	
-			</label>
+			
 
 			<select name="estados" id="estados" style="display:block">
 				<option>[SELECIONE SEU ESTADO - UF]</option>
@@ -138,10 +158,12 @@
 			<select id="cidades" style="display:block">
 				<option>[SELECINE SUA CIDADE]</option>		
 			</select>
+
 		</fieldset>
+		<input type="submit" value="Cadastrar">
 	</form>
 	
-	
+	</div>
 	
 </body>
 </html>
