@@ -65,7 +65,7 @@
 			border:double 1px darkgray;
 			padding:5px;  
 			border-radius: 10px;
-			max-width: 200px;                       
+			max-width: 300px;                       
 			margin: 10px;
 
 		}
@@ -151,19 +151,18 @@
 	function carregaGet (valor) {            
 		
 		$.get('ajaxGet.php',{user:valor}, function (data) {
-			if(data=='1')  {
-				$("#resultadoGet").html('Este usuário já está utilizado, escolha outro.');
-				$("#imagem").load('imagem.php',{nome:valor});
-				//$("#imagem").html('Carrega foto do usuário');                
-			} else {
+			if(data==0)  {
 				$("#resultadoGet").html('Nome de usuário OK');
-				$("#imagem").html('Foto do usuário');
+				$("#imagem").html('Foto do usuário');				              
+			} else {				
+				$("#resultadoGet").html('Este usuário já está utilizado, escolha outro.');
+				$("#imagem").load('ajaxGet.php',{user:valor});
+				//$("#imagem").html('Carrega foto do usuário');
 				
 			}                 
 
 		});
 	} 
-
 
 	$("#estados").on("change",function() {
 		var idUF = $("#estados").val();
@@ -187,11 +186,4 @@
 			}
 		});
 	});
-
 </script>
-
-
-
-
-
-
