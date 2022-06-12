@@ -7,20 +7,20 @@
 	<meta charset="utf-8">
 
 	<style>
-		body {
-			font-size: 14px;
-		}
+	body {
+		font-size: 14px;
+	}
 
-		img {
-			margin: 10px;
-			width: 600px;
+	img {
+		margin: 10px;
+		width: 600px;
 
-		}
+	}
 
-		ul,
-		li {
-			list-style-type: none;
-		}
+	ul,
+	li {
+		list-style-type: disc;
+	}
 	</style>
 
 
@@ -31,85 +31,88 @@
 <body>
 
 	<h1>Guardador de arquivos</h1>
-	<ul>
+	
 		<input type="file" id="arquivo" name="arquivo" onchange="mudarArquivoImagem(this)">
-
-		<li id="resultado" onclick="carregarArquivo(input)"></li>
+		
+		
+		<div id="resultado" onclick="carregarArquivo(input)"></div>
+				
 
 		<script>
-
-			document.write("<br>");
-			for (var i=0; i < localStorage.length; i++) {
-				
-				var link = document.createElement('a');
+		document.write("<br>");
+		
+		for (var i=0; i < localStorage.length; i++) {
+			if (localStorage[localStorage.key(i)].slice(5,10)==='image') {
 				var quebra = document.createElement('br');
+				var imagem = document.createElement("img");
+				imagem.src = localStorage[localStorage.key(i)];
+				resultado.appendChild(quebra);				
+				resultado.appendChild(imagem);
+				resultado.appendChild(quebra);
+			} else {
+				var link = document.createElement('a');
+				var quebra = document.createElement('br');				
 				link.href = localStorage[localStorage.key(i)];
 				link.innerHTML = "Arquivo ".concat([i+1]);
-				resultado.appendChild(quebra);
+				resultado.appendChild(quebra);							
 				resultado.appendChild(link);
-				resultado.appendChild(quebra);				
-				
+				resultado.appendChild(quebra);
+			} 
 		}
 		</script>
 
+		
+<script>
 
-	</ul>
+	function mudarArquivoImagem(input) {
+		var arquivo = input.files[0];
+		var reader = new FileReader();
+		reader.onload = carregarArquivo;
+		reader.readAsDataURL(arquivo);
+	}
+
+	function carregarArquivo(evento) {
+
+		if (evento.target.result.slice(5, 10) === 'image') {
+			var imagem = document.createElement("img");
+			var quebra = document.createElement('br');
+			imagem.src = evento.target.result;
+			resultado.appendChild(imagem);
+			resultado.appendChild(quebra);
+			var i = localStorage.length+1;			
+			localStorage.setItem(i,imagem.src)
+			console.log(localStorage.key(i),localStorage[localStorage.key(i)]);
 
 
 
 
-	<script>
-
-
-
-		function mudarArquivoImagem(input) {
-			var arquivo = input.files[0];
-			var reader = new FileReader();
-			reader.onload = carregarArquivo;
-			reader.readAsDataURL(arquivo);
+		} else {
+			var link = document.createElement('a');
+			var quebra = document.createElement('br');
+			link.href = evento.target.result;
+			link.innerHTML = "Arquivo ";
+			resultado.appendChild(quebra);
+			resultado.appendChild(link);
+			resultado.appendChild(quebra);
+			var i = localStorage.length+1;					
+			localStorage.setItem(i, link.href);
+			
 		}
-
-		function carregarArquivo(evento) {
-
-			if (evento.target.result.slice(5, 10) === 'image') {
-				var imagem = document.createElement("img");
-				var quebra = document.createElement('br');
-				imagem.src = evento.target.result;
-				resultado.appendChild(imagem);
-				resultado.appendChild(quebra);
-
-				localStorage.setItem("imagemStorage", toBase64String(imagem));
-
-
-
-
-			} else {
-				var link = document.createElement('a');
-				var quebra = document.createElement('br');
-				link.href = evento.target.result;
-				link.innerHTML = "Arquivo ";
-				resultado.appendChild(quebra);
-				resultado.appendChild(link);
-				resultado.appendChild(quebra);
-
-				localStorage.setItem("stringStorage", link);
-
-
-
-			}
-
-			function toBase64String(img) {
-				var canvas = document.createElement("canvas");
-				canvas.width = img.width;
-				canvas.height = img.height;
-				var ctx = canvas.getContext("2d");
-				ctx.drawImage(img, 0, 0);
-				var dataURL = canvas.toDataURL("image/png");
-				return dataURL;
-			}
-
+		/*
+		function toBase64String(img) {
+			var canvas = document.createElement("canvas");
+			canvas.width = img.width;
+			canvas.height = img.height;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0);
+			var dataURL = canvas.toDataURL("image/png");
+			return dataURL;
 		}
+		*/
+	}
 	</script>
+
+	
 
 </body>
 
