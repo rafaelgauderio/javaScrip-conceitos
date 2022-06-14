@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Canvas com JavaScript </title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			
+
+		}
+
+		h1 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+			text-align: center;
+		}
+
+		h3 {
+			font-size: 14px;
+			background-color: chartreuse;
+			border-radius: 10px;
+			padding: 5px;
+			border: 2px solid black;
+		}
+
+		img {
+			margin: 10px;
+			width: 50px;
+			display: none;
+			
+
+		}
+
+		canvas {
+			
+			border: 2px solid greenyellow;
+		}
+		
+
+	</style>
+
+
+</head>
+
+
+
+<body>
+	<h1>Canvas com JavaScript - Região de desenho dentro do html </h1>
+	<h3>Retângulos</h3>
+	<canvas id="canvasRect" width="320" height="320">
+		Navagedor não suporta Canvas
+	</canvas>
+
+	
+	<script>
+		var canvas = document.getElementById('canvasRect');
+		var contexto = canvas.getContext('2d');
+		contexto.fillStyle = 'blue';
+		//esquerda, top, largura, altura
+		contexto.fillRect(10,10,20,20);
+		contexto.strokeRect(20,20,40,40);
+
+		//começando uma linha
+		contexto.beginPath();
+		contexto.moveTo(60,60);
+		contexto.lineTo(150,150);
+		contexto.stroke();
+		
+		//começando um círculo
+		contexto.beginPath();
+		contexto.fillStyle ='orange';
+		contexto.strokeStyle = 'darkgreen';
+		contexto.arc(160,160,10 * Math.sqrt(2),0, Math.PI*2, false);
+		contexto.fill();
+		contexto.stroke();
+
+		//texto
+		contexto.font= '18pt Arial';
+		contexto.fillText('Rafael De Luca',120,40);
+		contexto.strokeText('Rafael De Luca',120,40);		
+		console.log(contexto);
+
+		
+		</script>
+
+		<h3>Imagens</h3>
+		<img src='soda.jpg' width="50" height="50">
+		<canvas id="canvasImg" width="400" height="400">
+			Seu navegador não suporta canvas
+		</canvas>	
+
+		<script>
+			window.onload = function() {
+			var canvas = document.getElementById("canvasImg");
+			var contexto = 	canvas.getContext("2d");		
+			var imagem = new Image();	
+			//img.src= "https://www.atacadocollections.com/img/g/funko-soda-vinyl-thundercats-lion-o-img_105699_2.jpg";
+			imagem.src = "soda.jpg";
+			contexto.drawImage(imagem,100,100,200,200);	
+			}	
+		</script>
+		
+		<h3>Recortando uma pedaço da imagem: Passe o mouse no canvas</h3>
+		<img src='soda.jpg' width="50" height="50">
+		<canvas id="canvasRecorte" width="400" height="400"></canvas>
+		<script>
+			canvasRecorte.onmouseover = function() {
+			var canvas = document.getElementById("canvasRecorte");
+			var contexto = 	canvas.getContext("2d");		
+			var imagem = new Image();			
+			imagem.src = "soda.jpg";
+			contexto.drawImage(imagem,0,0,200,200,100,100,100,100);	
+			}		
+			
+		</script>
+	
+
+
+</body>
+
+</html>
+
