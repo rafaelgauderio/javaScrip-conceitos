@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Canvas com JavaScript </title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: "Comic Sans MS", "Arial";
+			font-size: 14px;
+			
+
+		}
+
+		h1 {
+			font-size: 18px;
+			background-color: #48d1cc;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			background: linear-gradient(to bottom, #48d1cc 0%, #00ced1 100%);
+			text-align: center;
+		}
+
+		h3 {
+			font-size: 14px;
+			background-color: chartreuse;
+			border-radius: 10px;
+			padding: 5px;
+			border: 2px solid black;
+		}		
+
+		canvas {			
+			border: 1px solid darkblue;
+            border-radius: 5px;
+            margin-right: auto;
+            margin-left: auto;
+            display: block;
+
+		}		
+
+	</style>
+
+
+</head>
+
+<body>
+	<h1>Canvas com JavaScript - Região de desenho dentro do html </h1>
+	<h3>Vídeo</h3>
+
+	<canvas id="canvasVideo" width="320" height="320">
+		Navagedor não suporta Canvas
+	</canvas>	
+	
+	<script>			
+		var canvas = document.getElementById("canvasVideo");
+		var contexto = 	canvas.getContext("2d");
+        contexto.fillStyle='blue';
+        var objeto = {x:0, y:0, vx:2.5, vy:3, ax:0, ay:0.05};        
+        requestAnimationFrame(atualizar);
+
+
+        function atualizar () {
+            contexto.clearRect(0,0,320,320);            
+            //objeto.vy+=0.05; //aceleração pra baixo
+            objeto.vx +=objeto.ax;
+            objeto.vy+=objeto.ay;
+            objeto.x+=objeto.vx;   
+            objeto.y+=objeto.vy;
+             //fundo = altura 320 - 30  
+            if(objeto.y >= 290 ) {
+                objeto.y=290;
+                objeto.vy*=-1;
+            } 
+            else if(objeto.y<=0) {
+                objeto.y=0;
+                objeto.vy*=-1;
+            }
+            else if(objeto.x >=290) {
+                objeto.x=290;
+                objeto.vx*=-1;
+            }
+            
+            else if(objeto.x <=0) {
+                objeto.x=0;
+                objeto.vx*=-1;
+            }
+            contexto.fillRect(objeto.x,objeto.y,30,30);
+            requestAnimationFrame(atualizar);      
+
+        }
+
+    </script>
+
+</body>
+</html>
+
