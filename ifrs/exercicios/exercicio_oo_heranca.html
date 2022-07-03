@@ -53,10 +53,8 @@
 		<fieldset>
 			<legend>Cadastro de Funcionário</legend>
 			<label for="nome">Nome:</label> <input type="text" id="nome"><br>
-			<label for="datanasc">Data de Nascimento:</label> <input type="text" id="datanasc"
-				placeholder="dd/mm/aaaa"><br>
-			<label for="dataadmissao">Data de Admissão:</label> <input type="text" placeholder="dd/mm/aaaa"
-				id="dataadmissao"><br>
+			<label for="datanasc">Data de Nascimento:</label> <input type="text" id="datanasc" placeholder="dd/mm/aaaa"><br>
+			<label for="dataadmissao">Data de Admissão:</label> <input type="text" placeholder="dd/mm/aaaa"	id="dataadmissao"><br>
 			<input type="button" onclick="return capturar()" id="btcadastrar" value="Cadastrar">
 		</fieldset>
 	</form>
@@ -74,16 +72,11 @@
 				<td id="nomeInformado"></td>
 				<td id="dataNascInformada"></td>
 				<td id="dataAdmissaoInformada"></td>
-				<td onclick="limpar()">excluir</td>
+				<td id="excluir" onclick="limpar()"></td>
 			</tr>
 		</tbody>
 	</table>
-	<br>
-	<p id="nome1"></p>
-	<p id="dataNasc1"></p>
-	<p id="dataAdmis1"></p>
-	<p id="idade"></p>
-	<p id="tempo"></p>
+	
 
 	<script>
 
@@ -179,38 +172,65 @@
 					var dias = diferenca / (1000 * 60 * 60 * 24);
 					var meses = diferenca / (1000 * 60 * 60 * 24 * 30);
 					var anos = diferenca / (1000 * 60 * 60 * 24 * 30 * 12);
-					return Math.trunc(dias) + " dias, ou " + (meses).toFixed(2) + " meses, ou " + (anos).toFixed(2) + " ano(s).";
+					//return Math.trunc(dias) + " dias, ou " + (meses).toFixed(2) + " meses, ou " + (anos).toFixed(2) + " ano(s).";
+					return (anos).toFixed(0) + " anos";
 				}
-
 
 			}
 		}
 
 		var funcionario1 = new Funcionario();
 
+		function validarData () {	
+
+			var regexDataNascimento = /\d{2}\/\d{2}\/\d{4}/ig;			
+			var dataNascimento = document.forms["formulario"].elements[2].value;
+			var resultDataNasc = regexDataNascimento.exec(dataNascimento);
+
+			var dataAdmissao = document.forms["formulario"].elements[3].value;
+			var regexDataAdmissao = /\d{2}\/\d{2}\/\d{4}/ig;
+			var resultDataAdmissao = regexDataAdmissao.exec(dataAdmissao);
+
+			if(resultDataNasc == null) {
+				alert("Data de nascimento inválida");
+				var dataNascimento = document.forms["formulario"].elements[2].focus();
+				return false;
+			
+			} else if (resultDataAdmissao == null) {
+				alert("Data de Admissão inválida");
+				var dataNascimento = document.forms["formulario"].elements[3].focus();
+				return false; 
+				
+			} else {
+				return true;
+			}
+		}
+
 		function capturar() {
 
-			nome = document.getElementById('nome').value;
-			document.getElementById('nomeInformado').innerHTML = nome;
-
-			dataNascimento = document.getElementById('datanasc').value;
-			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
-
-			dataAdmissao = document.getElementById('dataadmissao').value;
-			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
+			if(validarData()== true) {
 
 			funcionario1.nome = document.forms["formulario"].elements[1].value;
 			funcionario1.dataNascimento = document.forms["formulario"].elements[2].value;
 			funcionario1.dataAdmissao = document.forms["formulario"].elements[3].value;
 
-			document.getElementById("nome1").innerHTML = "<b>Nome: </b>" + funcionario1.nome;
-			document.getElementById("dataAdmis1").innerHTML = "<b>Data de Nascimento: </b>" + funcionario1.dataNascimento;
-			document.getElementById("dataNasc1").innerHTML = "<b>Data de Admissão: </b>" + funcionario1.dataAdmissao;
+			
+			nome = document.getElementById('nome').value;
+			//var tdNome = document.createElement('td');
+			document.getElementById('nomeInformado').innerHTML= nome;			
 
-			document.getElementById("idade").innerHTML = "<b>Idade:</b> " + funcionario1.idade(dataNascimento) + " anos";
-			document.getElementById("tempo").innerHTML = "<b>Tempo de serviço:</b> " + funcionario1.tempoServico(dataAdmissao);
+			dataNascimento = document.getElementById('datanasc').value;
+			document.getElementById('dataNascInformada').innerHTML = dataNascimento + " (" + funcionario1.idade(dataNascimento) + " anos)";
+
+			dataAdmissao = document.getElementById('dataadmissao').value;
+			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao + " (" + funcionario1.tempoServico(dataAdmissao) + ")";
+
+			var excluirX = "x";
+			document.getElementById('excluir').innerHTML = excluirX;			
 
 			return true;
+
+			}			
 
 		}
 
@@ -221,22 +241,12 @@
 			var dataNascimento = null;
 			document.getElementById('dataNascInformada').innerHTML = dataNascimento;
 			var dataAdmissao = null;
-			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;
-			document.getElementById("nome1").innerHTML = null;
-			document.getElementById("dataNasc1").innerHTML = null;
-			document.getElementById("dataAdmis1").innerHTML = null;
-			document.getElementById("idade").innerHTML = null;
-			document.getElementById("tempo").innerHTML = null;
-
+			document.getElementById('dataAdmissaoInformada').innerHTML = dataAdmissao;			
+			var excluir = null;
+			document.getElementById('excluir').innerHTML = excluir;
 		}
 
-
-
 	</script>
-
-
-
-
 
 </body>
 
