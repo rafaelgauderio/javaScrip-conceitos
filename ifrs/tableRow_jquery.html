@@ -1,0 +1,35 @@
+<style>
+  td {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  table, th, td {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.min.js"></script>
+<table id="tabela">
+  <tr>
+    <td>row1 column1</td>
+    <td>row1 column2</td>
+    <td>row1 column3</td>
+    <td>row1 column4</td>
+ </tr>
+</table>
+<br>
+<button type="button" onclick="adicionarLinha()">Adicionar Linha</button>
+
+<script>
+function adicionarLinha(){
+ var table = document.getElementById("tabela");
+ var linha = table.insertRow(1);
+  //adiciona linha no indice 1 (abaixo da primeira);
+ linha.innerHTML = "<td>nome</td><td>Data Nascimento</td><td>Data Admissao</td><td>Excluir</td>";
+}
+</script>
