@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title> Exercicio orientacao a Objetos com JavaScript com classes</title>
+	<meta charset="utf-8">
+
+	<style>
+		body {
+			font-family: Arial;
+		}
+
+		label {
+			display: inline-block;
+			width: 150px;
+			margin: 2px;
+		}
+
+		fieldset {
+			display: inline-block;
+		}
+
+		th {
+			background-color: black;
+			color: white;
+		}
+
+		#datanasc,
+		#dataadmissao {
+			width: 10em;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		td:last-child {
+			text-align: center;
+			color: red;
+			cursor: pointer;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+</head>
+
+
+
+<body>
+	<form name="formulario" id="formulario">
+		<fieldset>
+			<legend>Cadastro de Funcionário</legend>
+			<label for="nome">Nome:</label> <input type="text" id="nome"><br>
+			<label for="datanasc">Data de Nascimento:</label> <input type="text" id="datanasc"
+				placeholder="dd/mm/aaaa"><br>
+			<label for="dataadmissao">Data de Admissão:</label> <input type="text" placeholder="dd/mm/aaaa"
+				id="dataadmissao"><br>
+			<input type="button" onclick="return capturar()" id="btcadastrar" value="Cadastrar">
+		</fieldset>
+	</form>
+	<table id="funcionarios">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Data de Nascimento</th>
+				<th>Data de Admissão</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+
+
+	<script>
+		class Pessoa {
+			#nome = "";
+			#dataNascimento;
+
+			constructor() {
+
+			}
+
+			set nome(value) {
+				this.#nome = value;
+			}
+
+			get nome() {
+				return this.#nome;
+			}
+
+			set dataNascimento(value) {
+				this.#dataNascimento = value;
+			}
+
+			get dataNascimento() {
+				return this.#dataNascimento;
+			}
+
+			idade(dataNascimento) {
+
+				var agora = new Date();
+				var hoje = new Date(agora.getYear(), agora.getMonth, agora.getDate());
+
+				var anoAgora = agora.getYear();
+				var mesAgora = agora.getMonth();
+				var diaAgora = agora.getDate();
+
+				var dataNascimento = new Date(dataNascimento.substr(6, 4), dataNascimento.substr(3, 2) - 1, dataNascimento.substr(0, 2));
+				var anoNascimento = dataNascimento.getYear();
+				var mesNascimento = dataNascimento.getMonth();
+				var diaNascimento = dataNascimento.getDate();
+
+				var anoIdade = anoAgora - anoNascimento;
+				//console.log(anoIdade);
+
+				if (mesAgora >= mesNascimento) {
+					var mesIdade = mesAgora - mesNascimento;
+				} else {
+					anoIdade = anoIdade - 1;
+					var mesIdade = (mesAgora - mesNascimento) + 12;
+				}
+				if (diaAgora >= diaNascimento) {
+					var diaIdade = diaAgora - diaNascimento;
+				} else {
+					mesIdade = mesIdade - 1;
+					diaIdade = (diaAgora - diaNascimento) + 31;
+					if (mesIdade < 0) {
+						mesIdade = 11;
+						anoIdade = anoIdade - 1;
+					}
+
+				}
+				//console.log(anoIdade);
+				return anoIdade;
+			}
+
+		}
+
+		class Funcionario extends Pessoa {
+
+			#dataAdmissao;
+
+			constructor() {
+				super();
+			}
+
+			set dataAdmissao(value) {
+				this.#dataAdmissao = value;
+			}
+
+			get dataAdmissao() {
+				return this.#dataAdmissao;
+			}
+
+			tempoServico(dataAdmissao) {
+				var hoje = new Date();
+				var dataAdmin = new Date(dataAdmissao.substr(6, 4), dataAdmissao.substr(3, 2) - 1, dataAdmissao.substr(0, 2));
+				var diferenca = hoje.getTime() - dataAdmin.getTime();
+				if (diferenca < 0) {
+					return "A data de admissão não pode ser futura a data atual!";
+				} else {
+					var dias = diferenca / (1000 * 60 * 60 * 24);
+					var meses = diferenca / (1000 * 60 * 60 * 24 * 30);
+					var anos = diferenca / (1000 * 60 * 60 * 24 * 30 * 12);
+					//return Math.trunc(dias) + " dias, ou " + (meses).toFixed(2) + " meses, ou " + (anos).toFixed(2) + " ano(s).";
+					return (anos).toFixed(0) + " anos";
+				}
+
+			}
+		}
+
+		var funcionario1 = new Funcionario();
+
+		function validarData() {
+
+			var regexDataNascimento = /\d{2}\/\d{2}\/\d{4}/ig;
+			var dataNascimento = document.forms["formulario"].elements[2].value;
+			var resultDataNasc = regexDataNascimento.exec(dataNascimento);
+
+			var dataAdmissao = document.forms["formulario"].elements[3].value;
+			var regexDataAdmissao = /\d{2}\/\d{2}\/\d{4}/ig;
+			var resultDataAdmissao = regexDataAdmissao.exec(dataAdmissao);
+
+			if (resultDataNasc == null) {
+				alert("Data de nascimento inválida");
+				var dataNascimento = document.forms["formulario"].elements[2].focus();
+				return false;
+
+			} else if (resultDataAdmissao == null) {
+				alert("Data de Admissão inválida");
+				var dataNascimento = document.forms["formulario"].elements[3].focus();
+				return false;
+
+			} else {
+				return true;
+			}
+		}
+
+		function capturar() {
+
+			if (validarData() == true) {
+
+				funcionario1.nome = document.forms["formulario"].elements[1].value;
+				funcionario1.dataNascimento = document.forms["formulario"].elements[2].value;
+				funcionario1.dataAdmissao = document.forms["formulario"].elements[3].value;
+
+				var tabela = document.getElementById("funcionarios");
+				var linha = tabela.insertRow(tabela.lenght);
+				linha.innerHTML = "<td><input value="+funcionario1.nome+ "></td><td><input value="+ funcionario1.dataNascimento + "> (" +
+					funcionario1.idade(funcionario1.dataNascimento) + " anos)</td><td><input value=" + funcionario1.dataAdmissao + "> (" +
+					funcionario1.tempoServico(funcionario1.dataAdmissao) + ")</td><td onclick='removerLinha(this)'>X</td>";
+						
+				return true;
+
+			}
+
+		}		
+
+		(function ($) {
+			removerLinha = function (item) {
+			var tr = $(item).closest('tr');
+
+			tr.fadeOut(300, function () {
+			tr.remove();
+					});
+					return false;
+			}
+		})(jQuery);
+
+	</script>
+
+	
+
+</body>
+
+</html>

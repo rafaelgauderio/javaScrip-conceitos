@@ -9,11 +9,18 @@
   border-radius: 5px;
 }
 
+button {
+  margin: 10px;
+}
 
 
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.min.js"></script>
+
+<br>
+<button type="button" onclick="adicionarLinha()">Adicionar Linha</button>
+<br>
 <table id="tabela">
   <tr>
     <td>row1 column1</td>
@@ -22,8 +29,7 @@
     <td>row1 column4</td>
  </tr>
 </table>
-<br>
-<button type="button" onclick="adicionarLinha()">Adicionar Linha</button>
+
 
 <script>
 function adicionarLinha(){
